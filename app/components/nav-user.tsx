@@ -19,12 +19,13 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import {
    SidebarMenu,
    SidebarMenuButton,
    SidebarMenuItem,
-   useSidebar,
-} from "@/components/ui/sidebar";
+   useSidebarContext,
+} from "./ui";
 
 export function NavUser({
    user,
@@ -35,7 +36,7 @@ export function NavUser({
       avatar: string;
    };
 }) {
-   const { isMobile } = useSidebar();
+   const { isMobile } = useSidebarContext();
 
    return (
       <SidebarMenu>

@@ -2,6 +2,11 @@ import { Outlet } from "react-router";
 
 import { AppSidebar } from "@/components/app-sidebar";
 import {
+   SidebarInset,
+   SidebarProvider,
+   SidebarTrigger,
+} from "@/components/ui/";
+import {
    Breadcrumb,
    BreadcrumbItem,
    BreadcrumbLink,
@@ -10,11 +15,6 @@ import {
    BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import {
-   SidebarInset,
-   SidebarProvider,
-   SidebarTrigger,
-} from "@/components/ui/sidebar";
 
 export default () => {
    return (
@@ -43,7 +43,7 @@ export default () => {
                   </Breadcrumb>
                </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="flex flex-1 flex-col gap-4 p-4 pt-0 overflow-hidden">
                <Outlet />
             </div>
          </SidebarInset>

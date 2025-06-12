@@ -13,6 +13,7 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import {
    SidebarGroup,
    SidebarGroupLabel,
@@ -20,8 +21,8 @@ import {
    SidebarMenuAction,
    SidebarMenuButton,
    SidebarMenuItem,
-   useSidebar,
-} from "@/components/ui/sidebar";
+   useSidebarContext,
+} from "./ui";
 
 export function NavProjects({
    projects,
@@ -32,7 +33,7 @@ export function NavProjects({
       icon: LucideIcon;
    }[];
 }) {
-   const { isMobile } = useSidebar();
+   const { isMobile } = useSidebarContext();
 
    return (
       <SidebarGroup className="group-data-[collapsible=icon]:hidden">
