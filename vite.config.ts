@@ -1,5 +1,5 @@
+import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
@@ -7,13 +7,12 @@ import tsConfigPaths from "vite-tsconfig-paths";
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
-// @ts-expect-error
-export default defineConfig(async () => ({
-   plugins: [react(), tailwindcss(), tsConfigPaths()],
+export default defineConfig({
+   plugins: [tailwindcss(), reactRouter(), tsConfigPaths()],
 
    resolve: {
       alias: {
-         "@": path.resolve(__dirname, "./src"),
+         "@": path.resolve(__dirname, "./app"),
       },
    },
 
@@ -38,4 +37,4 @@ export default defineConfig(async () => ({
          ignored: ["**/src-tauri/**"],
       },
    },
-}));
+});
