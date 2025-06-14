@@ -18,9 +18,9 @@ import { Separator } from "@/components/ui/separator";
 
 export default () => {
    return (
-      <SidebarProvider>
+      <SidebarProvider className="h-full overflow-hidden">
          <AppSidebar />
-         <SidebarInset>
+         <SidebarInset className="overflow-hidden min-h-0">
             <header className="flex h-16 shrink-0 items-center gap-2">
                <div className="flex items-center gap-2 px-4">
                   <SidebarTrigger className="-ml-1" />
@@ -43,7 +43,8 @@ export default () => {
                   </Breadcrumb>
                </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-0 overflow-hidden">
+            <Separator className="mb-2" />
+            <div className="p-2 overflow-auto min-h-0">
                <Outlet />
             </div>
          </SidebarInset>

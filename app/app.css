@@ -133,6 +133,8 @@
       2px 8px 10px 3px hsl(0 3.9216% 60% / 0.18);
    --shadow-2xl: 2px 2px 10px 4px hsl(0 3.9216% 60% / 0.45);
    --tracking-normal: 0em;
+
+   --titlebar-height: 2rem;
 }
 
 .dark {
@@ -211,8 +213,13 @@
    }
 }
 
-body {
+.sidebar {
    --sb-track-color: var(--sidebar);
+   --sb-thumb-color: var(--sidebar-scrollbar);
+   --sb-size: 14px;
+}
+body {
+   --sb-track-color: var(--background);
    --sb-thumb-color: var(--sidebar-scrollbar);
    --sb-size: 14px;
 }
