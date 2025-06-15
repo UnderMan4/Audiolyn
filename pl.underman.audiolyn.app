@@ -1,0 +1,1 @@
+C:/Users/filip/AppData/Roaming/pl.underman4.audiolyn.app

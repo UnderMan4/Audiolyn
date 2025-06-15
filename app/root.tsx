@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { TauriStoreProvider } from "./contexts/tauri-store-context";
 import "./intl/i18n";
 
 export const links: Route.LinksFunction = () => [
@@ -37,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Links />
          </head>
          <body className="dark">
-            {children}
+            <TauriStoreProvider>{children}</TauriStoreProvider>
             <ScrollRestoration />
             <Scripts />
          </body>
