@@ -30,5 +30,4 @@ i18next
       interpolation: {
          escapeValue: false,
       },
-      debug: process.env.NODE_ENV === "development",
    });

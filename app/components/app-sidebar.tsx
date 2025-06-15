@@ -3,6 +3,8 @@ import {
    Bot,
    Command,
    Frame,
+   LayoutDashboard,
+   LibraryBig,
    LifeBuoy,
    Map,
    PieChart,
@@ -15,7 +17,6 @@ import * as React from "react";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
 
 import {
    Sidebar,
@@ -28,11 +29,6 @@ import {
 } from "./ui";
 
 const data = {
-   user: {
-      name: "shadcn",
-      email: "m@example.com",
-      avatar: "/avatars/shadcn.jpg",
-   },
    navMain: [
       {
          title: "Playground",
@@ -151,6 +147,37 @@ const data = {
    ],
 };
 
+const navMain: NavMain.Item[] = [
+   {
+      icon: LayoutDashboard,
+      title: "common.sidebar.dashboard",
+      url: "dashboard",
+   },
+   {
+      icon: LibraryBig,
+      title: "common.sidebar.library",
+      url: "library",
+      items: [
+         {
+            title: "common.sidebar.authors",
+            url: "library/authors",
+         },
+         {
+            title: "common.sidebar.genres",
+            url: "library/genres",
+         },
+         {
+            title: "common.sidebar.series",
+            url: "library/series",
+         },
+         {
+            title: "common.sidebar.languages",
+            url: "library/languages",
+         },
+      ],
+   },
+];
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    return (
       <Sidebar variant="floating" {...props}>
@@ -174,7 +201,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenu>
          </SidebarHeader>
          <SidebarContent>
-            <NavMain items={data.navMain} />
+            <NavMain items={navMain} />
             <NavProjects projects={data.projects} />
             <NavSecondary items={data.navSecondary} className="mt-auto" />
          </SidebarContent>

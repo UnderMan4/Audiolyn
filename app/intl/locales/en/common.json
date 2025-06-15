@@ -2,6 +2,12 @@
    "test": "TestEN",
    "sidebar": {
       "dashboard": "Dashboard",
-      "library": "Library"
+      "library": "Library",
+      "authors": "Authors",
+      "languages": "Languages",
+      "genres": "Genres",
+      "series": "Series",
+      "settings": "Settings",
+      "sr_chevron": "Toggle"
    }
 }

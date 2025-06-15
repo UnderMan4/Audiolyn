@@ -5,6 +5,7 @@ import {
    Share,
    Trash2,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import {
    DropdownMenu,
@@ -23,6 +24,7 @@ import {
    SidebarMenuItem,
    useSidebarContext,
 } from "./ui";
+import { Switch } from "./ui/switch";
 
 export function NavProjects({
    projects,
@@ -34,11 +36,18 @@ export function NavProjects({
    }[];
 }) {
    const { isMobile } = useSidebarContext();
+   const { i18n } = useTranslation();
 
    return (
       <SidebarGroup className="group-data-[collapsible=icon]:hidden">
          <SidebarGroupLabel>Projects</SidebarGroupLabel>
          <SidebarMenu>
+            <Switch
+               checked={i18n.language === "pl_PL"}
+               onCheckedChange={(e) => {
+                  i18n.changeLanguage(e ? "pl_PL" : "en");
+               }}
+            />
             {projects.map((item) => (
                <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton asChild>

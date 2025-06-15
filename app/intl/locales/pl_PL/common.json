@@ -2,6 +2,11 @@
    "test": "TestPL",
    "sidebar": {
       "dashboard": "Panel",
-      "library": "Biblioteka"
+      "library": "Biblioteka",
+      "authors": "Autorzy",
+      "genres": "Gatunki",
+      "languages": "Języki",
+      "series": "Serie",
+      "settings": "Ustawienia"
    }
 }
