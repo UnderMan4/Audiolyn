@@ -1,4 +1,5 @@
 {
+   "plugins": ["formatjs"],
    "extends": [
       "eslint:recommended",
       "plugin:react/recommended",
@@ -36,5 +37,6 @@
             "allow": ["warn", "error"],
          },
       ],
+      "formatjs/no-offset": "error",
    },
 }

@@ -10,7 +10,6 @@ import {
 
 import {
    SidebarGroup,
-   SidebarGroupLabel,
    SidebarMenu,
    SidebarMenuAction,
    SidebarMenuButton,
@@ -20,10 +19,8 @@ import {
    SidebarMenuSubItem,
 } from "./ui";
 
-export function NavMain({
-   items,
-}: {
-   items: {
+export namespace NavMain {
+   export type Item = {
       title: string;
       url: string;
       icon: LucideIcon;
@@ -32,11 +29,16 @@ export function NavMain({
          title: string;
          url: string;
       }[];
-   }[];
-}) {
+   };
+
+   export type Props = {
+      items: Item[];
+   };
+}
+
+export function NavMain({ items }: NavMain.Props) {
    return (
       <SidebarGroup>
-         <SidebarGroupLabel>Platform</SidebarGroupLabel>
          <SidebarMenu>
             {items.map((item) => (
                <Collapsible

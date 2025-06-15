@@ -10,7 +10,7 @@ export const Titlebar = () => {
          )}
          data-tauri-drag-region
       >
-         <div>fsdfdf</div>
+         <div className="pl-2">Audiolyn</div>
          <div className="flex items-center">
             <TitlebarButton action="minimize" />
             <TitlebarButton action="maximize" />

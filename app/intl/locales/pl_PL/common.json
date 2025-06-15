@@ -1,0 +1,7 @@
+{
+   "test": "TestPL",
+   "sidebar": {
+      "dashboard": "Panel",
+      "library": "Biblioteka"
+   }
+}
