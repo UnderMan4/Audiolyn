@@ -1,5 +1,3 @@
-"use client";
-
 import {
    BadgeCheck,
    Bell,
@@ -8,6 +6,7 @@ import {
    LogOut,
    Sparkles,
 } from "lucide-react";
+import React from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -27,15 +26,17 @@ import {
    useSidebarContext,
 } from "./ui";
 
-export function NavUser({
-   user,
-}: {
-   user: {
-      name: string;
-      email: string;
-      avatar: string;
+export namespace NavUser {
+   export type Props = {
+      user: {
+         name: string;
+         email: string;
+         avatar: string;
+      };
    };
-}) {
+}
+
+export const NavUser = ({ user }: NavUser.Props) => {
    const { isMobile } = useSidebarContext();
 
    return (
@@ -118,4 +119,4 @@ export function NavUser({
          </SidebarMenuItem>
       </SidebarMenu>
    );
-}
+};

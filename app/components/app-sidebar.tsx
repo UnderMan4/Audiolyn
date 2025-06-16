@@ -151,7 +151,7 @@ const navMain: NavMain.Item[] = [
    {
       icon: LayoutDashboard,
       title: "common.sidebar.dashboard",
-      url: "dashboard",
+      url: "/",
    },
    {
       icon: LibraryBig,
@@ -178,7 +178,11 @@ const navMain: NavMain.Item[] = [
    },
 ];
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export namespace AppSidebar {
+   export type Props = React.ComponentProps<typeof Sidebar>;
+}
+
+export function AppSidebar({ ...props }: AppSidebar.Props) {
    return (
       <Sidebar variant="floating" {...props}>
          <SidebarHeader>

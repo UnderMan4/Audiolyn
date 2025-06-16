@@ -1,3 +1,5 @@
+import * as path from "@tauri-apps/api/path";
+import { useEffect } from "react";
 import {
    Links,
    Meta,
@@ -9,8 +11,13 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { TauriStoreProvider } from "./contexts/tauri-store-context";
+import { LIBRARY_DIRECTORY } from "./constants";
+import { useAsyncEffect } from "./hooks";
 import "./intl/i18n";
+import {
+   settingsStoreHandler,
+   useSettingsStore,
+} from "./stores/settings-store";
 
 export const links: Route.LinksFunction = () => [
    { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -26,6 +33,18 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+   const { libraryLocation, setLibraryLocation } = useSettingsStore();
+   useEffect(() => {
+      settingsStoreHandler.start();
+   }, []);
+
+   useAsyncEffect(async () => {
+      if (libraryLocation.trim() === "") {
+         const homeDir = await path.homeDir();
+         const libraryPath = await path.join(homeDir, LIBRARY_DIRECTORY);
+         setLibraryLocation(libraryPath);
+      }
+   }, []);
    return (
       <html lang="en">
          <head>
@@ -38,7 +57,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Links />
          </head>
          <body className="dark">
-            <TauriStoreProvider>{children}</TauriStoreProvider>
+            {import.meta.env.DEV && <script src="http://localhost:8097" />}
+            {children}
             <ScrollRestoration />
             <Scripts />
          </body>

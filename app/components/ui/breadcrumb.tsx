@@ -1,14 +1,29 @@
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
-import * as React from "react";
+import React from "react";
 
 import { cn } from "@/lib/utils";
 
-function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
-   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
+export namespace Breadcrumb {
+   export type RootProps = React.ComponentProps<"nav">;
+   export type ListProps = React.ComponentProps<"ol">;
+   export type ItemProps = React.ComponentProps<"li">;
+   export type LinkProps = React.ComponentProps<"a"> & {
+      asChild?: boolean;
+   };
+   export type PageProps = React.ComponentProps<"span">;
+   export type SeparatorProps = React.ComponentProps<"li">;
+   export type EllipsisProps = React.ComponentProps<"span">;
 }
 
-function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
+export const Breadcrumb = ({ ...props }: Breadcrumb.RootProps) => {
+   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
+};
+
+export const BreadcrumbList = ({
+   className,
+   ...props
+}: Breadcrumb.ListProps) => {
    return (
       <ol
          data-slot="breadcrumb-list"
@@ -19,9 +34,12 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
          {...props}
       />
    );
-}
+};
 
-function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
+export const BreadcrumbItem = ({
+   className,
+   ...props
+}: Breadcrumb.ItemProps) => {
    return (
       <li
          data-slot="breadcrumb-item"
@@ -29,15 +47,13 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
          {...props}
       />
    );
-}
+};
 
-function BreadcrumbLink({
+export const BreadcrumbLink = ({
    asChild,
    className,
    ...props
-}: React.ComponentProps<"a"> & {
-   asChild?: boolean;
-}) {
+}: Breadcrumb.LinkProps) => {
    const Comp = asChild ? Slot : "a";
 
    return (
@@ -47,9 +63,12 @@ function BreadcrumbLink({
          {...props}
       />
    );
-}
+};
 
-function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
+export const BreadcrumbPage = ({
+   className,
+   ...props
+}: Breadcrumb.PageProps) => {
    return (
       <span
          data-slot="breadcrumb-page"
@@ -60,13 +79,13 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
          {...props}
       />
    );
-}
+};
 
-function BreadcrumbSeparator({
+export const BreadcrumbSeparator = ({
    children,
    className,
    ...props
-}: React.ComponentProps<"li">) {
+}: Breadcrumb.SeparatorProps) => {
    return (
       <li
          data-slot="breadcrumb-separator"
@@ -78,12 +97,12 @@ function BreadcrumbSeparator({
          {children ?? <ChevronRight />}
       </li>
    );
-}
+};
 
-function BreadcrumbEllipsis({
+export const BreadcrumbEllipsis = ({
    className,
    ...props
-}: React.ComponentProps<"span">) {
+}: Breadcrumb.EllipsisProps) => {
    return (
       <span
          data-slot="breadcrumb-ellipsis"
@@ -96,14 +115,4 @@ function BreadcrumbEllipsis({
          <span className="sr-only">More</span>
       </span>
    );
-}
-
-export {
-   Breadcrumb,
-   BreadcrumbList,
-   BreadcrumbItem,
-   BreadcrumbLink,
-   BreadcrumbPage,
-   BreadcrumbSeparator,
-   BreadcrumbEllipsis,
 };

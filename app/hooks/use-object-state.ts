@@ -1,23 +1,22 @@
 import { useState } from "react";
 
-/**
- * Setter function for useObjectState.
- * - If `replace` is true, replaces the state with a new object or updater.
- * - If `replace` is false or omitted, merges a partial object or updater result into the state.
- */
-export type ObjectStateSetter<T extends Record<string, any>> = {
-   (value: Partial<T> | ((prev: T) => Partial<T>), replace?: false): void;
-   (value: T | ((prev: T) => T), replace: true): void;
-};
+export namespace UseObjectState {
+   /**
+    * Setter function for useObjectState.
+    * - If `replace` is true, replaces the state with a new object or updater.
+    * - If `replace` is false or omitted, merges a partial object or updater result into the state.
+    */
+   export type Setter<T extends Record<string, any>> = {
+      (value: Partial<T> | ((prev: T) => Partial<T>), replace?: false): void;
+      (value: T | ((prev: T) => T), replace: true): void;
+   };
 
-/**
- * Return type for useObjectState hook.
- * Tuple: [state, setter]
- */
-export type UseObjectStateReturn<T extends Record<string, any>> = [
-   T,
-   ObjectStateSetter<T>,
-];
+   /**
+    * Return type for useObjectState hook.
+    * Tuple: [state, setter]
+    */
+   export type Return<T extends Record<string, any>> = [T, Setter<T>];
+}
 
 /**
  * React hook for managing object-like state with partial updates.
@@ -31,10 +30,10 @@ export type UseObjectStateReturn<T extends Record<string, any>> = [
  */
 export function useObjectState<T extends Record<string, any>>(
    initialState: T
-): UseObjectStateReturn<T> {
+): UseObjectState.Return<T> {
    const [state, setState] = useState<T>(initialState);
 
-   const setObjectState: ObjectStateSetter<T> = (
+   const setObjectState: UseObjectState.Setter<T> = (
       value: any,
       replace: boolean = false
    ) => {

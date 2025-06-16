@@ -4,14 +4,33 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+   --radius-2xs: calc(var(--radius) - 12px);
+   --radius-xs: calc(var(--radius) - 8px);
    --radius-sm: calc(var(--radius) - 4px);
    --radius-md: calc(var(--radius) - 2px);
    --radius-lg: var(--radius);
    --radius-xl: calc(var(--radius) + 4px);
    --color-background: var(--background);
    --color-foreground: var(--foreground);
+
    --color-card: var(--card);
    --color-card-foreground: var(--card-foreground);
+
+   --color-card-warn: var(--card-warn);
+   --color-card-border-warn: var(--card-border-warn);
+   --color-card-icon-warn: var(--card-icon-warn);
+   --color-card-foreground-warn: var(--card-foreground-warn);
+
+   --color-card-error: var(--card-error);
+   --color-card-border-error: var(--card-border-error);
+   --color-card-icon-error: var(--card-icon-error);
+   --color-card-foreground-error: var(--card-foreground-error);
+
+   --color-card-success: var(--card-success);
+   --color-card-border-success: var(--card-border-success);
+   --color-card-icon-success: var(--card-icon-success);
+   --color-card-foreground-success: var(--card-foreground-success);
+
    --color-popover: var(--popover);
    --color-popover-foreground: var(--popover-foreground);
    --color-primary: var(--primary);
@@ -39,7 +58,7 @@
    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
    --color-sidebar-border: var(--sidebar-border);
    --color-sidebar-ring: var(--sidebar-ring);
-   --font-sans: Plus Jakarta Sans, sans-serif;
+   --font-sans: Poppins, sans-serif;
    --font-mono: Roboto Mono, monospace;
    --font-serif: Lora, serif;
    --radius: 1.25rem;
@@ -72,8 +91,25 @@
    --radius: 1.25rem;
    --background: oklch(0.9251 0.0042 157.1728);
    --foreground: oklch(0.2785 0.0478 356.4614);
+
    --card: oklch(0.9694 0.0011 197.1386);
    --card-foreground: oklch(0.2785 0.0478 356.4614);
+
+   --card-warn: oklch(0.9392 0.02 90);
+   --card-border-warn: oklch(0.92 0.1 90);
+   --card-icon-warn: oklch(0.928 0.04 90);
+   --card-foreground-warn: oklch(0.2785 0.0478 90);
+
+   --card-error: oklch(0.92 0.02 12.28);
+   --card-border-error: oklch(0.88 0.08 12.28);
+   --card-icon-error: oklch(0.91 0.04 12.28);
+   --card-foreground-error: oklch(0.2785 0.0478 12.28);
+
+   --card-success: oklch(0.9 0.02 155);
+   --card-border-success: oklch(0.88 0.06 155);
+   --card-icon-success: oklch(0.885 0.03 155);
+   --card-foreground-success: oklch(0.2785 0.0478 155);
+
    --popover: oklch(0.9694 0.0011 197.1386);
    --popover-foreground: oklch(0.2785 0.0478 356.4614);
    --primary: oklch(0.6799 0.1754 21.7423);
@@ -103,7 +139,7 @@
    --sidebar-ring: oklch(0.6799 0.1754 21.7423);
    --sidebar-scrollbar: oklch(0.2785 0.0478 356.4614 / 0.3);
    --destructive-foreground: oklch(1 0 0);
-   --font-sans: Plus Jakarta Sans, sans-serif;
+   --font-sans: Poppins, sans-serif;
    --font-serif: Lora, serif;
    --font-mono: Roboto Mono, monospace;
    --shadow-color: #9d9595;
@@ -140,8 +176,25 @@
 .dark {
    --background: oklch(0.2277 0.0106 163.8637);
    --foreground: oklch(0.9256 0.0172 349.5095);
+
    --card: oklch(0.2848 0.0122 160.5114);
    --card-foreground: oklch(0.9256 0.0172 349.5095);
+
+   --card-warn: oklch(0.25 0.03 90);
+   --card-border-warn: oklch(0.28 0.1 90);
+   --card-icon-warn: oklch(0.259 0.05 90);
+   --card-foreground-warn: oklch(0.9256 0.0172 90);
+
+   --card-error: oklch(0.24 0.04 0);
+   --card-border-error: oklch(0.28 0.09 0);
+   --card-icon-error: oklch(0.25 0.055 0);
+   --card-foreground-error: oklch(0.9256 0.0172 0);
+
+   --card-success: oklch(0.25 0.03 155);
+   --card-border-success: oklch(0.28 0.09 155);
+   --card-icon-success: oklch(0.26 0.05 155);
+   --card-foreground-success: oklch(0.9256 0.0172 155);
+
    --popover: oklch(0.2848 0.0122 160.5114);
    --popover-foreground: oklch(0.9256 0.0172 349.5095);
    --primary: oklch(0.7393 0.1453 15.4758);
@@ -172,7 +225,7 @@
    --sidebar-scrollbar: oklch(0.9256 0.0172 349.5095 / 0.3);
    --destructive-foreground: oklch(0.2277 0.0106 163.8637);
    --radius: 1.25rem;
-   --font-sans: Plus Jakarta Sans, sans-serif;
+   --font-sans: Poppins, sans-serif;
    --font-serif: Lora, serif;
    --font-mono: Roboto Mono, monospace;
    --shadow-color: #1a1a1a;

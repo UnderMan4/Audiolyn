@@ -1,0 +1,16 @@
+{
+   "common": {
+      "back": "Powrót",
+      "next": "Dalej"
+   },
+   "library": {
+      "selectDirectory": "Wybierz katalog",
+      "subtitle": "Wybierz, gdzie będzie przechowywana biblioteka audiobooków i jak chcesz nią zarządzać.",
+      "title": "Biblioteka"
+   },
+   "welcome": {
+      "start": "Start",
+      "subtitle": "Naciśnij „Start”, aby rozpocząć proces konfiguracji.",
+      "title": "Witamy w Audiolyn!"
+   }
+}

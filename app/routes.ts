@@ -9,8 +9,7 @@ import {
 export default [
    layout("layouts/titlebar-layout.tsx", [
       layout("layouts/main-layout.tsx", [
-         index("routes/home.tsx"),
-         route("dashboard", "routes/dashboard.tsx"),
+         index("routes/dashboard.tsx"),
          ...prefix("library", [
             index("routes/library.tsx"),
             route("authors", "routes/authors.tsx"),
@@ -19,5 +18,6 @@ export default [
             route("series", "routes/series.tsx"),
          ]),
       ]),
+      route("wizard", "routes/wizard.tsx"),
    ]),
 ] satisfies RouteConfig;

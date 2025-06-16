@@ -13,28 +13,28 @@ import {
    DropdownMenuItem,
    DropdownMenuSeparator,
    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import {
    SidebarGroup,
    SidebarGroupLabel,
    SidebarMenu,
    SidebarMenuAction,
    SidebarMenuButton,
    SidebarMenuItem,
+   Switch,
    useSidebarContext,
 } from "./ui";
-import { Switch } from "./ui/switch";
 
-export function NavProjects({
-   projects,
-}: {
-   projects: {
+export namespace NavProjects {
+   export type Project = {
       name: string;
       url: string;
       icon: LucideIcon;
-   }[];
-}) {
+   };
+   export type Props = {
+      projects: Project[];
+   };
+}
+
+export const NavProjects = ({ projects }: NavProjects.Props) => {
    const { isMobile } = useSidebarContext();
    const { i18n } = useTranslation();
 
@@ -94,4 +94,4 @@ export function NavProjects({
          </SidebarMenu>
       </SidebarGroup>
    );
-}
+};

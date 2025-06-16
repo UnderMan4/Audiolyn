@@ -7,6 +7,12 @@
       "genres": "Gatunki",
       "languages": "Języki",
       "series": "Serie",
-      "settings": "Ustawienia"
+      "settings": "Ustawienia",
+      "sr_chevron": "Przełącz"
+   },
+   "languages": {
+      "en_US": "angielski (English)",
+      "pl_PL": "polski",
+      "system": "Język systemowy"
    }
 }

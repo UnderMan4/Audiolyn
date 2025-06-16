@@ -39,7 +39,7 @@ export namespace NavMain {
    };
 }
 
-export function NavMain({ items }: NavMain.Props) {
+export const NavMain = ({ items }: NavMain.Props) => {
    const { t } = useTranslation();
 
    return (
@@ -89,4 +89,4 @@ export function NavMain({ items }: NavMain.Props) {
          </SidebarMenu>
       </SidebarGroup>
    );
-}
+};

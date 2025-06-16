@@ -1,6 +1,12 @@
+import React from "react";
+
 import { cn } from "@/lib/utils";
 
-function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+export namespace Skeleton {
+   export type Props = React.ComponentProps<"div">;
+}
+
+export const Skeleton = ({ className, ...props }: Skeleton.Props) => {
    return (
       <div
          data-slot="skeleton"
@@ -8,6 +14,4 @@ function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
          {...props}
       />
    );
-}
-
-export { Skeleton };
+};

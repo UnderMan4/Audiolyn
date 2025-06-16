@@ -1,0 +1,16 @@
+{
+   "common": {
+      "next": "Next",
+      "back": "Back"
+   },
+   "welcome": {
+      "title": "Welcome to Audiolyn!",
+      "subtitle": "Press 'Start' to begin the setup process.",
+      "start": "Start"
+   },
+   "library": {
+      "title": "Library",
+      "subtitle": "Please select where your audiobooks library will be stored and how you want to manage it.",
+      "selectDirectory": "Select directory"
+   }
+}

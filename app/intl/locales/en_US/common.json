@@ -9,5 +9,10 @@
       "series": "Series",
       "settings": "Settings",
       "sr_chevron": "Toggle"
+   },
+   "languages": {
+      "system": "System Language",
+      "en_US": "English",
+      "pl_PL": "polski (Polish)"
    }
 }

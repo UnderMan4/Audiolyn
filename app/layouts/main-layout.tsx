@@ -1,4 +1,5 @@
-import { Outlet } from "react-router";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router";
 
 import { AppSidebar } from "@/components/app-sidebar";
 import {
@@ -15,8 +16,17 @@ import {
    BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
+import { useSettingsStore } from "@/stores/settings-store";
 
 export default () => {
+   const navigate = useNavigate();
+   const { flags } = useSettingsStore();
+   useEffect(() => {
+      if (flags.isFirstRun) {
+         navigate("/wizard");
+      }
+   }, [flags.isFirstRun, navigate]);
+
    return (
       <SidebarProvider className="h-full overflow-hidden">
          <AppSidebar />

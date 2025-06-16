@@ -2,31 +2,45 @@ import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
-import en from "./locales/en";
+import en_US from "./locales/en_US";
 import pl_PL from "./locales/pl_PL";
+import { Intl } from "./types";
 
-export const languages = {
-   en,
+export const countryCodes: Record<Intl.Locale, string> = {
+   en_US: "GB",
+   pl_PL: "PL",
+};
+
+export const translations = {
+   en_US,
    pl_PL,
 } as const;
-export type Language = keyof typeof languages;
+
+export const languages: Intl.Locale[] = Object.keys(
+   translations
+) as Intl.Locale[];
 
 type Resources = {
-   [K in keyof typeof languages]: { translation: (typeof languages)[K] };
+   [K in keyof typeof translations]: { translation: (typeof translations)[K] };
 };
 const resources: Resources = Object.fromEntries(
-   Object.entries(languages).map(([key, value]) => [
+   Object.entries(translations).map(([key, value]) => [
       key,
       { translation: value },
    ])
 ) as Resources;
 
-i18next
-   .use(LanguageDetector)
+const languageDetector = new LanguageDetector(null, {
+   convertDetectedLanguage: (lang: string) =>
+      lang.replace("-", "_") as Intl.Locale,
+});
+
+await i18next
+   .use(languageDetector)
    .use(initReactI18next)
    .init({
       resources,
-      fallbackLng: "en",
+      fallbackLng: "en_US",
       interpolation: {
          escapeValue: false,
       },
