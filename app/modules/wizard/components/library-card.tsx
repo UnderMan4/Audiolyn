@@ -1,7 +1,7 @@
 import * as path from "@tauri-apps/api/path";
 import * as fs from "@tauri-apps/plugin-fs";
 import { platform } from "@tauri-apps/plugin-os";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Save } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -13,11 +13,10 @@ import {
    CardFooter,
    CardHeader,
    CardTitle,
-   Typography,
 } from "@/components/ui";
 import { FileSelect } from "@/components/ui/file-select";
 import { REGEX } from "@/constants";
-import { useAsyncEffect } from "@/hooks";
+import { useLayoutAsyncEffect } from "@/hooks";
 import { Wizard } from "@/routes/wizard";
 import { useSettingsStore } from "@/stores/settings-store";
 
@@ -29,30 +28,25 @@ export namespace LibraryCard {
 
 const system = platform();
 
-export const LibraryCard = ({ nextStep, previousStep }: LibraryCard.Props) => {
+export const LibraryCard = ({ previousStep, finish }: LibraryCard.Props) => {
    const { t } = useTranslation();
    const { libraryLocation, setLibraryLocation } = useSettingsStore();
 
-   const [isValidLocation, setIsValidLocation] = useState(false);
+   const [isValidLocation, setIsValidLocation] = useState(true);
    const [isLocationEmpty, setIsLocationEmpty] = useState(true);
    const [pathError, setPathError] = useState<Error | undefined>(undefined);
 
-   useAsyncEffect(async () => {
+   useLayoutAsyncEffect(async () => {
       try {
          if (libraryLocation) {
             const resolvedPath = await path.resolve(libraryLocation);
-            console.log("🚀 ~ useAsyncEffect ~ resolvedPath:", resolvedPath);
-
-            console.log("🚀 ~ useAsyncEffect ~ system:", system);
             if (
                system === "windows" &&
                !REGEX.WINDOWS_PATH.test(resolvedPath.replace(/\\/g, "\\\\"))
             )
                return setIsValidLocation(false);
-            console.log("first");
             if (system === "linux" && !REGEX.UNIX_PATH.test(resolvedPath))
                return setIsValidLocation(false);
-            console.log("first2");
 
             setIsValidLocation(true);
             const exists = await fs.exists(resolvedPath);
@@ -69,7 +63,6 @@ export const LibraryCard = ({ nextStep, previousStep }: LibraryCard.Props) => {
       } catch (error) {
          if (error instanceof Error) {
             setPathError(error);
-            console.log("🚀 ~ useAsyncEffect ~ error:", error);
          }
          setIsValidLocation(false);
       }
@@ -112,16 +105,15 @@ export const LibraryCard = ({ nextStep, previousStep }: LibraryCard.Props) => {
                </Card>
             )}
             <LibraryMethodSelect />
-            {/* <div className="h-[1000px] w-4 bg-red-500"></div> */}
          </CardContent>
          <CardFooter className="flex justify-between">
             <Button variant="outline" onClick={previousStep}>
                <ArrowLeft />
                {t("wizard.common.back")}
             </Button>
-            <Button onClick={nextStep} disabled={!isValidLocation}>
-               {t("wizard.common.next")}
-               <ArrowRight />
+            <Button onClick={finish} disabled={!isValidLocation}>
+               {t("wizard.common.finish")}
+               <Check />
             </Button>
          </CardFooter>
       </Card>

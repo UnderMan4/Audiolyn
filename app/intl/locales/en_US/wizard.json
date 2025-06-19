@@ -1,7 +1,8 @@
 {
    "common": {
       "next": "Next",
-      "back": "Back"
+      "back": "Back",
+      "finish": "Finish"
    },
    "welcome": {
       "title": "Welcome to Audiolyn!",

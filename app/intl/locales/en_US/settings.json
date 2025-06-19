@@ -11,7 +11,13 @@
       },
       "link": {
          "title": "Link",
-         "description": "The library will link to the original files without copying them. This is the fastest method, but deleting the original files will make the audiobooks inaccessible in Audiolyn."
+         "description": "Audiolyn will link to the original files without copying them. This is the fastest method, but deleting the original files will make the audiobooks inaccessible in Audiolyn."
       }
+   },
+   "theme": {
+      "label": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System default"
    }
 }

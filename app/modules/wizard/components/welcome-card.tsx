@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { LanguageSelect } from "@/components/language-select";
+import { ThemeSelect } from "@/components/theme-select";
 import {
    Button,
    Card,
@@ -26,7 +27,10 @@ export const WelcomeCard = ({ nextStep }: WelcomeCard.Props) => {
             </Typography>
          </CardContent>
          <CardFooter className="flex justify-between">
-            <LanguageSelect />
+            <div className="flex items-center gap-4">
+               <LanguageSelect />
+               <ThemeSelect />
+            </div>
             <Button onClick={nextStep}>
                {t("wizard.welcome.start")} <ArrowRight />
             </Button>
