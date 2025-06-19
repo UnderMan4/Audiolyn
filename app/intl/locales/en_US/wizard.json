@@ -11,6 +11,11 @@
    "library": {
       "title": "Library",
       "subtitle": "Please select where your audiobooks library will be stored and how you want to manage it.",
-      "selectDirectory": "Select directory"
+      "selectDirectory": "Select directory",
+      "notEmpty": {
+         "title": "The selected directory is not empty",
+         "description": "If you're using an existing Audiolyn library, you can ignore this message. Otherwise, keep in mind that selecting a non-empty directory as the library location may lead to issues later on."
+      },
+      "error": "Provided path is invalid"
    }
 }

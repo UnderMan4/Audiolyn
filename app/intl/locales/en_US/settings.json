@@ -1,0 +1,17 @@
+{
+   "importMethod": {
+      "label": "Import method",
+      "copy": {
+         "title": "Copy",
+         "description": "(Recommended) Audiobooks will be copied to the library, leaving the original files untouched. This method uses the most storage space, but you can safely delete the originals afterward."
+      },
+      "move": {
+         "title": "Move",
+         "description": "Audiobooks will be moved to the library, and the original files will be deleted."
+      },
+      "link": {
+         "title": "Link",
+         "description": "The library will link to the original files without copying them. This is the fastest method, but deleting the original files will make the audiobooks inaccessible in Audiolyn."
+      }
+   }
+}

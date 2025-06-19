@@ -1,2 +1,2 @@
-export * from "./library-location-card";
+export * from "./library-card";
 export * from "./welcome-card";

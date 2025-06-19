@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 export namespace SettingsStore {
    export type Values = {
-      libraryMethod: "copy" | "move" | "symlink";
+      importMethod: "copy" | "move" | "link";
       libraryLocation: string;
       flags: {
          isFirstRun: boolean;
@@ -12,7 +12,7 @@ export namespace SettingsStore {
 
    export type Functions = {
       setFlag: (flag: keyof Values["flags"], value: boolean) => void;
-      setLibraryMethod: (method: Values["libraryMethod"]) => void;
+      setImportMethod: (method: Values["importMethod"]) => void;
       setLibraryLocation: (location: string) => void;
    };
 
@@ -20,7 +20,7 @@ export namespace SettingsStore {
 }
 
 export const useSettingsStore = create<SettingsStore.Store>((set) => ({
-   libraryMethod: "copy",
+   importMethod: "copy",
    libraryLocation: "",
    flags: {
       isFirstRun: true,
@@ -33,7 +33,8 @@ export const useSettingsStore = create<SettingsStore.Store>((set) => ({
             [flag]: value,
          },
       })),
-   setLibraryMethod: (libraryMethod) => set(() => ({ libraryMethod })),
+   setImportMethod: (libraryMethod) =>
+      set(() => ({ importMethod: libraryMethod })),
    setLibraryLocation: (libraryLocation) => set(() => ({ libraryLocation })),
 }));
 

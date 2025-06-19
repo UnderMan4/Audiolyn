@@ -16,6 +16,15 @@
     "core:window:allow-internal-toggle-maximize",
     "store:default",
     "dialog:default",
-    "fs:default"
+    "fs:default",
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        {
+          "path": "**"
+        }
+      ]
+    },
+    "os:default"
   ]
 }

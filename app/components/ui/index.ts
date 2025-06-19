@@ -17,3 +17,4 @@ export * from "./select";
 export * from "./file-select";
 export * from "./label";
 export * from "./switch";
+export * from "./typography";

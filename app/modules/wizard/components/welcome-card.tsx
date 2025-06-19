@@ -2,7 +2,13 @@ import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { LanguageSelect } from "@/components/language-select";
-import { Button, Card, CardContent, CardFooter } from "@/components/ui";
+import {
+   Button,
+   Card,
+   CardContent,
+   CardFooter,
+   Typography,
+} from "@/components/ui";
 import { Wizard } from "@/routes/wizard";
 
 export namespace WelcomeCard {
@@ -14,8 +20,10 @@ export const WelcomeCard = ({ nextStep }: WelcomeCard.Props) => {
    return (
       <Card className="w-full max-w-xl mx-4" variant="default">
          <CardContent>
-            <h1>{t("wizard.welcome.title")}</h1>
-            <p>{t("wizard.welcome.subtitle")}</p>
+            <Typography variant="h1">{t("wizard.welcome.title")}</Typography>
+            <Typography className="text-muted-foreground mt-2">
+               {t("wizard.welcome.subtitle")}
+            </Typography>
          </CardContent>
          <CardFooter className="flex justify-between">
             <LanguageSelect />

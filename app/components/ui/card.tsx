@@ -1,8 +1,10 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { CircleCheckBig, OctagonX, TriangleAlert } from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
 
 import { cn } from "@/lib/utils";
+
+import { Typography } from "./typography";
 
 export namespace Card {
    export type RootProps = React.ComponentProps<"div"> &
@@ -15,10 +17,12 @@ export namespace Card {
    export type ActionProps = React.ComponentProps<"div">;
    export type ContentProps = React.ComponentProps<"div">;
    export type FooterProps = React.ComponentProps<"div">;
+
+   export type ContextValue = VariantProps<typeof cardVariants>;
 }
 
 export const cardVariants = cva(
-   "flex flex-col gap-6 border shadow-sm group relative overflow-hidden",
+   "flex flex-col border shadow-sm group relative overflow-hidden max-h-full min-h-0",
    {
       variants: {
          variant: {
@@ -29,8 +33,8 @@ export const cardVariants = cva(
                "bg-card-success text-card-foreground-success border-card-border-success",
          },
          type: {
-            default: "rounded-xl py-6",
-            inner: "rounded-md py-4",
+            default: "rounded-xl py-6 gap-6",
+            inner: "rounded-md py-4 gap-2",
          },
       },
       defaultVariants: {
@@ -39,6 +43,15 @@ export const cardVariants = cva(
       },
    }
 );
+
+const CardContext = React.createContext<Card.ContextValue | null>(null);
+
+const useCardContext = () => {
+   const value = useContext(CardContext);
+   if (value === null)
+      throw new Error("useCardContext must be used within a ContextProvider.");
+   return value;
+};
 
 export const Card = ({
    className,
@@ -53,38 +66,51 @@ export const Card = ({
       "-top-8 -right-8 size-32": type === "default",
    });
    return (
-      <div
-         data-slot="card"
-         data-variant={variant}
-         data-type={type}
-         className={cn(cardVariants({ variant, type }), className)}
-         {...props}
+      <CardContext.Provider
+         value={{
+            type,
+            variant,
+         }}
       >
-         {icon && variant === "warn" && (
-            <TriangleAlert
-               className={cn("text-card-icon-warn", iconCLassName)}
-            />
-         )}
-         {icon && variant === "error" && (
-            <OctagonX className={cn("text-card-icon-error", iconCLassName)} />
-         )}
-         {icon && variant === "success" && (
-            <CircleCheckBig
-               className={cn("text-card-icon-success", iconCLassName)}
-            />
-         )}
-         {children}
-      </div>
+         <div
+            data-slot="card"
+            data-variant={variant}
+            data-type={type}
+            className={cn(cardVariants({ variant, type }), className)}
+            {...props}
+         >
+            {icon && variant === "warn" && (
+               <TriangleAlert
+                  className={cn("text-card-icon-warn", iconCLassName)}
+               />
+            )}
+            {icon && variant === "error" && (
+               <OctagonX
+                  className={cn("text-card-icon-error", iconCLassName)}
+               />
+            )}
+            {icon && variant === "success" && (
+               <CircleCheckBig
+                  className={cn("text-card-icon-success", iconCLassName)}
+               />
+            )}
+            {children}
+         </div>
+      </CardContext.Provider>
    );
 };
 
 export const CardHeader = ({ className, ...props }: Card.HeaderProps) => {
+   const { type } = useCardContext();
    return (
       <div
          data-slot="card-header"
          className={cn(
-            "z-10 @container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
-            "group-data-[type=inner]:px-4",
+            "z-10 @container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+            {
+               "px-6 gap-1.5": type === "default",
+               "px-4 gap-0.5": type === "inner",
+            },
             className
          )}
          {...props}
@@ -93,13 +119,15 @@ export const CardHeader = ({ className, ...props }: Card.HeaderProps) => {
 };
 
 export const CardTitle = ({ className, ...props }: Card.TitleProps) => {
+   const { type } = useCardContext();
+
    return (
-      <div
+      <Typography
          data-slot="card-title"
-         className={cn(
-            "z-10 leading-none font-semibold group-data-[type=inner]:text-sm",
-            className
-         )}
+         variant={
+            type === "default" ? "h2" : type === "inner" ? "title1" : "h2"
+         }
+         className={cn("z-10", className)}
          {...props}
       />
    );
@@ -109,11 +137,17 @@ export const CardDescription = ({
    className,
    ...props
 }: Card.DescriptionProps) => {
+   const { type } = useCardContext();
+
    return (
       <div
          data-slot="card-description"
          className={cn(
-            "z-10 text-muted-foreground text-sm group-data-[type=inner]:text-xs",
+            "z-10 text-muted-foreground",
+            {
+               "text-sm": type === "default",
+               "mb-2 text-xs": type === "inner",
+            },
             className
          )}
          {...props}
@@ -139,7 +173,7 @@ export const CardContent = ({ className, ...props }: Card.ContentProps) => {
       <div
          data-slot="card-content"
          className={cn(
-            "z-10 px-6 group-data-[type=inner]:px-4 group-data-[type=inner]:text-sm",
+            "z-10 px-6 group-data-[type=inner]:px-4 group-data-[type=inner]:text-sm overflow-auto min-h-0 flex-1",
             className
          )}
          {...props}

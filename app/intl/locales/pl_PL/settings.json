@@ -1,0 +1,17 @@
+{
+   "importMethod": {
+      "label": "Metoda importu",
+      "copy": {
+         "description": "(Zalecane) Audiobooki zostaną skopiowane do biblioteki, pozostawiając oryginalne pliki nietknięte. Ta metoda wykorzystuje najwięcej miejsca do przechowywania, ale możesz później bezpiecznie usunąć oryginały.",
+         "title": "Kopiowanie"
+      },
+      "link": {
+         "description": "Tworzony będzie link do oryginalnych plików bez ich kopiowania. Jest to najszybsza metoda, ale usunięcie oryginalnych plików sprawi, że audiobooki będą niedostępne w AudioLyn.",
+         "title": "Linkowanie"
+      },
+      "move": {
+         "description": "Audiobooki zostaną przeniesione do biblioteki, a oryginalne pliki zostaną usunięte.",
+         "title": "Przenoszenie"
+      }
+   }
+}
