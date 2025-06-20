@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 
-import { AppSidebar } from "@/components/app-sidebar";
 import {
    SidebarInset,
    SidebarProvider,
@@ -16,6 +15,7 @@ import {
    BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
+import { AppSidebar } from "@/modules/sidebar";
 import { useSettingsStore } from "@/stores/settings-store";
 
 export default () => {

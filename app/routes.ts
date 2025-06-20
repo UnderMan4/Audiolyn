@@ -11,12 +11,13 @@ export default [
       layout("layouts/main-layout.tsx", [
          index("routes/dashboard.tsx"),
          ...prefix("library", [
-            index("routes/library.tsx"),
-            route("authors", "routes/authors.tsx"),
-            route("genres", "routes/genres.tsx"),
-            route("languages", "routes/languages.tsx"),
-            route("series", "routes/series.tsx"),
+            index("routes/library/library.tsx"),
+            route("authors", "routes/library/authors.tsx"),
+            route("genres", "routes/library/genres.tsx"),
+            route("languages", "routes/library/languages.tsx"),
+            route("series", "routes/library/series.tsx"),
          ]),
+         route("settings", "routes/settings.tsx"),
       ]),
       route("wizard", "routes/wizard.tsx"),
    ]),
