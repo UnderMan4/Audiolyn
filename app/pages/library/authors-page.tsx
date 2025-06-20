@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Authors() {
+export default function AuthorsPage() {
    return <div>Authors</div>;
 }

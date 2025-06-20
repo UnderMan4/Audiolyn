@@ -74,7 +74,11 @@ export const NavSubmenu = ({ item }: NavCollapsible.Props) => {
             align={isMobile ? "start" : "end"}
          >
             {item.items.map((subItem) => (
-               <DropdownMenuItem key={subItem.id} asChild>
+               <DropdownMenuItem
+                  key={subItem.id}
+                  asChild
+                  className="cursor-pointer"
+               >
                   {subItem.type === "link" ? (
                      <Link to={subItem.to}>
                         {subItem.icon && <subItem.icon />}

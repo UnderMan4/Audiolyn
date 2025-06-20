@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Genres() {
+export default function GenresPage() {
    return <div>Genres</div>;
 }

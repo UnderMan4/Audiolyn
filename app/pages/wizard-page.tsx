@@ -11,7 +11,7 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export namespace Wizard {
+export namespace WizardPage {
    export type CardProps = {
       nextStep: () => void;
       previousStep: () => void;
@@ -19,12 +19,12 @@ export namespace Wizard {
    };
 }
 
-export default function Wizard() {
+export default function WizardPage() {
    const [step, setStep] = useState(0);
    const navigate = useNavigate();
 
    const { setFlag } = useSettingsStore();
-   const cardProps = useMemo<Wizard.CardProps>(
+   const cardProps = useMemo<WizardPage.CardProps>(
       () => ({
          nextStep: () => setStep((prev) => prev + 1),
          previousStep: () => setStep((prev) => Math.max(prev - 1, 0)),

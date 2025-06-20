@@ -68,6 +68,9 @@ importers:
       '@tauri-apps/plugin-store':
         specifier: ~2.2.0
         version: 2.2.0
+      '@tauri-apps/plugin-window-state':
+        specifier: ~2.2.3
+        version: 2.2.3
       '@tauri-store/zustand':
         specifier: ^0.3.0
         version: 0.3.0(@types/react@19.1.8)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
@@ -1411,6 +1414,9 @@ packages:
 
   '@tauri-apps/plugin-store@2.2.0':
     resolution: {integrity: sha512-hJTRtuJis4w5fW1dkcgftsYxKXK0+DbAqurZ3CURHG5WkAyyZgbxpeYctw12bbzF9ZbZREXZklPq8mocCC3Sgg==}
+
+  '@tauri-apps/plugin-window-state@2.2.3':
+    resolution: {integrity: sha512-Iqqzugs6lxpa9JPOe4O33lkCUyMGvh9dqnXof1tK4dP2wU7jKa7W3MLwVyo6c3oVl3dUCm73wkB3RJ0exR0SPg==}
 
   '@tauri-store/shared@0.9.0':
     resolution: {integrity: sha512-eQzBGHR1I/MTfRQeKWBzibKPeXpOqtXxmWSkW3S9GDzS3hLzyrgPJK+bez1U1wrP9fKVmUFYpYinU5UQC3B1nw==}
@@ -4697,6 +4703,10 @@ snapshots:
       '@tauri-apps/api': 2.5.0
 
   '@tauri-apps/plugin-store@2.2.0':
+    dependencies:
+      '@tauri-apps/api': 2.5.0
+
+  '@tauri-apps/plugin-window-state@2.2.3':
     dependencies:
       '@tauri-apps/api': 2.5.0
 

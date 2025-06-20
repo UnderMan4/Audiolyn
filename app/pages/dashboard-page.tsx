@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Dashboard() {
+export default function DashboardPage() {
    return <div>Dashboard</div>;
 }

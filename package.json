@@ -33,6 +33,7 @@
       "@tauri-apps/plugin-opener": "^2",
       "@tauri-apps/plugin-os": "~2.2.2",
       "@tauri-apps/plugin-store": "~2.2.0",
+      "@tauri-apps/plugin-window-state": "~2.2.3",
       "@tauri-store/zustand": "^0.3.0",
       "@uidotdev/usehooks": "^2.4.1",
       "class-variance-authority": "^0.7.1",

@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Settings() {
+export default function SettingsPage() {
    return <div>Settings</div>;
 }

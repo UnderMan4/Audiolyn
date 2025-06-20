@@ -17,13 +17,13 @@ import {
 import { FileSelect } from "@/components/ui/file-select";
 import { REGEX } from "@/constants";
 import { useLayoutAsyncEffect } from "@/hooks";
-import { Wizard } from "@/routes/wizard";
+import { WizardPage } from "@/pages/wizard-page";
 import { useSettingsStore } from "@/stores/settings-store";
 
 import { LibraryMethodSelect } from "./library-method-select";
 
 export namespace LibraryCard {
-   export type Props = Wizard.CardProps;
+   export type Props = WizardPage.CardProps;
 }
 
 const system = platform();

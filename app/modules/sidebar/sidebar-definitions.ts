@@ -1,5 +1,6 @@
 import {
    File,
+   Folder,
    Hash,
    Import,
    Languages,
@@ -74,6 +75,13 @@ export const secondaryItems: MenuItem[] = [
             type: "button",
             onClick: () => console.log("Import File clicked"),
             icon: File,
+         },
+         {
+            id: "import-folder",
+            label: "Import Folder",
+            type: "button",
+            onClick: () => console.log("Import Folder clicked"),
+            icon: Folder,
          },
       ],
    },

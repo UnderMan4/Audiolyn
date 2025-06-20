@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Languages() {
+export default function LanguagesPage() {
    return <div>Languages</div>;
 }

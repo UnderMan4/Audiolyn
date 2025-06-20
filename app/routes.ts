@@ -9,16 +9,16 @@ import {
 export default [
    layout("layouts/titlebar-layout.tsx", [
       layout("layouts/main-layout.tsx", [
-         index("routes/dashboard.tsx"),
+         index("pages/dashboard-page.tsx"),
          ...prefix("library", [
-            index("routes/library/library.tsx"),
-            route("authors", "routes/library/authors.tsx"),
-            route("genres", "routes/library/genres.tsx"),
-            route("languages", "routes/library/languages.tsx"),
-            route("series", "routes/library/series.tsx"),
+            index("pages/library/library-page.tsx"),
+            route("authors", "pages/library/authors-page.tsx"),
+            route("genres", "pages/library/genres-page.tsx"),
+            route("languages", "pages/library/languages-page.tsx"),
+            route("series", "pages/library/series-page.tsx"),
          ]),
-         route("settings", "routes/settings.tsx"),
+         route("settings", "pages/settings-page.tsx"),
       ]),
-      route("wizard", "routes/wizard.tsx"),
+      route("wizard", "pages/wizard-page.tsx"),
    ]),
 ] satisfies RouteConfig;

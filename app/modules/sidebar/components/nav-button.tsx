@@ -59,6 +59,7 @@ export const NavButton = ({ item, ...props }: NavButton.Props) => {
             asChild
             tooltip={t(item.label)}
             size="default"
+            className="cursor-pointer"
             {...props}
          >
             <DropdownMenuTrigger>

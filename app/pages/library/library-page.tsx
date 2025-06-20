@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Library() {
+export default function LibraryPage() {
    return <div>Library</div>;
 }

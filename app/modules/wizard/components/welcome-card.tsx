@@ -10,10 +10,10 @@ import {
    CardFooter,
    Typography,
 } from "@/components/ui";
-import { Wizard } from "@/routes/wizard";
+import { WizardPage } from "@/pages/wizard-page";
 
 export namespace WelcomeCard {
-   export type Props = Wizard.CardProps;
+   export type Props = WizardPage.CardProps;
 }
 
 export const WelcomeCard = ({ nextStep }: WelcomeCard.Props) => {

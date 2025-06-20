@@ -5,6 +5,6 @@ export function meta({}: Route.MetaArgs) {
    return [];
 }
 
-export default function Series() {
+export default function SeriesPage() {
    return <div>Series</div>;
 }
