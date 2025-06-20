@@ -1,8 +1,7 @@
+import { useCallback, useMemo } from "react";
 import {
    Location,
-   NavigateFunction,
    NavigateOptions as NavigateOptionsRaw,
-   To,
    useLocation,
    useNavigate,
 } from "react-router";
@@ -38,24 +37,23 @@ export namespace UseRouter {
 export const useRouter = <T extends object>(): UseRouter.ReturnType<T> => {
    const { state, search, ...rest } = useLocation();
    const navigateRaw = useNavigate();
+   const navigate = useCallback(
+      (to: BetterLink.To, options?: UseRouter.NavigateOptions<T>) => {
+         if (typeof to === "string") return navigateRaw(to, options);
 
-   const navigate = (
-      to: BetterLink.To,
-      options?: UseRouter.NavigateOptions<T>
-   ) => {
-      if (typeof to === "string") return navigateRaw(to, options);
+         const { search, ...newTo } = to;
+         return navigateRaw(
+            {
+               search: objectToSearchParams(search),
+               ...newTo,
+            },
+            options
+         );
+      },
+      [navigateRaw]
+   );
 
-      const { search, ...newTo } = to;
-      return navigateRaw(
-         {
-            search: objectToSearchParams(search),
-            ...newTo,
-         },
-         options
-      );
-   };
-
-   const searchParams = searchParamsToObject(search);
+   const searchParams = useMemo(() => searchParamsToObject(search), [search]);
 
    return {
       state,
