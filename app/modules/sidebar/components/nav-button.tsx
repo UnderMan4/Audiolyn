@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
+import { BetterLink } from "@/components/better-link";
 import { DropdownMenuTrigger, SidebarMenuButton } from "@/components/ui";
 
 import { MenuItem } from "../types";
@@ -29,10 +30,10 @@ export const NavButton = ({ item, ...props }: NavButton.Props) => {
             size="default"
             {...props}
          >
-            <Link to={item.to}>
+            <BetterLink to={item.to}>
                <item.icon />
                <span>{t(item.label)}</span>
-            </Link>
+            </BetterLink>
          </SidebarMenuButton>
       );
    }

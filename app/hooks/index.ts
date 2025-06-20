@@ -3,3 +3,4 @@ export * from "./use-mobile";
 export * from "./use-async-effect";
 export * from "./use-id";
 export * from "./use-preferred-dark-mode";
+export * from "./use-router";

@@ -3,7 +3,7 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import React from "react";
 
 import { useId } from "@/hooks";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import { Label } from "./label";
 

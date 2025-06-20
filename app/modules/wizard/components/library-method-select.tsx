@@ -8,7 +8,7 @@ import {
    SelectTrigger,
    SelectValue,
 } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 import { SettingsStore, useSettingsStore } from "@/stores/settings-store";
 
 export namespace LibraryMethodSelect {

@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
+import { BetterLink } from "@/components/better-link";
 import {
    CollapsibleContent,
    CollapsibleTrigger,
@@ -47,10 +48,10 @@ export const NavSubmenu = ({ item }: NavCollapsible.Props) => {
                      <SidebarMenuSubItem key={t(subItem.label)}>
                         <SidebarMenuSubButton asChild>
                            {subItem.type === "link" ? (
-                              <Link to={subItem.to}>
+                              <BetterLink to={subItem.to}>
                                  {subItem.icon && <subItem.icon />}
                                  <span>{t(subItem.label)}</span>
-                              </Link>
+                              </BetterLink>
                            ) : (
                               <button onClick={subItem.onClick}>
                                  {subItem.icon && <subItem.icon />}
@@ -80,10 +81,10 @@ export const NavSubmenu = ({ item }: NavCollapsible.Props) => {
                   className="cursor-pointer"
                >
                   {subItem.type === "link" ? (
-                     <Link to={subItem.to}>
+                     <BetterLink to={subItem.to}>
                         {subItem.icon && <subItem.icon />}
                         <span>{t(subItem.label)}</span>
-                     </Link>
+                     </BetterLink>
                   ) : (
                      <button onClick={subItem.onClick} className="w-full">
                         {subItem.icon && <subItem.icon />}

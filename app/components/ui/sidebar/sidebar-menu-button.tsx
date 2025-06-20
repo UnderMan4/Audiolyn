@@ -1,7 +1,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
 import { useSidebarContext } from "./sidebar-provider";

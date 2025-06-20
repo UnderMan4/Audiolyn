@@ -2,7 +2,7 @@ import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 export namespace Sheet {
    export type RootProps = React.ComponentProps<typeof SheetPrimitive.Root>;

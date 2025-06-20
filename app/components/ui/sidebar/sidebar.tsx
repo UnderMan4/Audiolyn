@@ -7,7 +7,7 @@ import {
    SheetHeader,
    SheetTitle,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import { useSidebarContext } from "./sidebar-provider";
 

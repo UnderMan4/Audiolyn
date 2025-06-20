@@ -1,7 +1,7 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 export namespace Tooltip {
    export type ProviderProps = React.ComponentProps<

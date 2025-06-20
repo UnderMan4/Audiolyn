@@ -1,7 +1,7 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { Minus, Square, X } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import { Button } from "../button";
 

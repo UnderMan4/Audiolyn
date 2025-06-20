@@ -21,7 +21,15 @@ export const mainItems: MenuItem[] = [
       icon: LayoutDashboard,
       label: "common.sidebar.dashboard",
       type: "link",
-      to: "/",
+      to: {
+         pathname: "/",
+         search: {
+            string: "string",
+            number: 123,
+            boolean: true,
+            date: new Date(),
+         },
+      },
    },
    {
       id: "library",

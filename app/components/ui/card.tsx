@@ -2,7 +2,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { CircleCheckBig, OctagonX, TriangleAlert } from "lucide-react";
 import React, { useContext } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import { Typography } from "./typography";
 

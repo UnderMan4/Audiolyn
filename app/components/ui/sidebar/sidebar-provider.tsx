@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import {
    SIDEBAR_COOKIE_MAX_AGE,

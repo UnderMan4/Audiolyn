@@ -1,5 +1,6 @@
 import { LucideIcon } from "lucide-react";
 
+import { BetterLink } from "@/components/better-link";
 import { ToDiscoUnion } from "@/lib/types.ts";
 
 export type MenuItem = {
@@ -10,7 +11,7 @@ export type MenuItem = {
    defaultOpen?: boolean;
 } & ToDiscoUnion<{
    button: { onClick: () => void };
-   link: { to: string };
+   link: { to: BetterLink.To };
    dropdown: { items: SubMenuItem[] };
 }>;
 
@@ -20,5 +21,5 @@ export type SubMenuItem = {
    icon?: LucideIcon;
 } & ToDiscoUnion<{
    button: { onClick: () => void };
-   link: { to: string };
+   link: { to: BetterLink.To };
 }>;

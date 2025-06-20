@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { countryCodes, languages } from "@/intl/i18n";
 import { Intl } from "@/intl/types";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/style-utils";
 
 import {
    Select,
