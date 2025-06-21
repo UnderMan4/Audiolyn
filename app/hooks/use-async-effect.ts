@@ -1,4 +1,4 @@
-import { useEffect, useRef, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 /**
  * useAsyncEffect allows you to use an async function in place of a normal useEffect effect.

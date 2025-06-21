@@ -1,5 +1,5 @@
 {
-  "identifier": "zustand",
-  "windows": ["*"],
-  "permissions": ["zustand:default", "core:event:default"]
+   "identifier": "zustand",
+   "windows": ["*"],
+   "permissions": ["zustand:default", "core:event:default"]
 }

@@ -28,7 +28,7 @@
       "@react-router/node": "7.6.2",
       "@react-router/serve": "7.6.2",
       "@tauri-apps/api": "^2",
-      "@tauri-apps/plugin-dialog": "~2.2.2",
+      "@tauri-apps/plugin-dialog": "~2",
       "@tauri-apps/plugin-fs": "~2.3.0",
       "@tauri-apps/plugin-opener": "^2",
       "@tauri-apps/plugin-os": "~2.2.2",

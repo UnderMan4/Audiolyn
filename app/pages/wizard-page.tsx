@@ -1,3 +1,4 @@
+import { BaseDirectory, exists, mkdir } from "@tauri-apps/plugin-fs";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -15,7 +16,8 @@ export namespace WizardPage {
    export type CardProps = {
       nextStep: () => void;
       previousStep: () => void;
-      finish: () => void;
+
+      finish: () => Promise<void>;
    };
 }
 
@@ -23,17 +25,20 @@ export default function WizardPage() {
    const [step, setStep] = useState(0);
    const navigate = useNavigate();
 
-   const { setFlag } = useSettingsStore();
+   const { setFlag, libraryLocation } = useSettingsStore();
    const cardProps = useMemo<WizardPage.CardProps>(
       () => ({
          nextStep: () => setStep((prev) => prev + 1),
          previousStep: () => setStep((prev) => Math.max(prev - 1, 0)),
-         finish: () => {
+         finish: async () => {
             setFlag("isFirstRun", false);
+            if (!(await exists(libraryLocation))) {
+               await mkdir(libraryLocation, { recursive: true });
+            }
             navigate("/");
          },
       }),
-      [setStep]
+      [setStep, libraryLocation, setFlag, navigate]
    );
 
    return (
