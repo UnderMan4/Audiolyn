@@ -24,7 +24,8 @@
 
       "paths": {
          "@/*": ["app/*"]
-      }
+      },
+      "rootDirs": [".", "./.react-router/types"]
    },
    "include": [
       "app",
@@ -33,5 +34,6 @@
       "**/.client/**/*",
       ".react-router/types/**/*"
    ],
-   "references": [{ "path": "./tsconfig.node.json" }]
+   "references": [{ "path": "./tsconfig.node.json" }],
+   "exclude": ["vite.config.d.ts"]
 }

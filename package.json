@@ -10,7 +10,8 @@
       "preview": "vite preview",
       "tauri": "tauri",
       "lint": "eslint . --ext .ts,.tsx",
-      "format": "prettier --write ."
+      "format": "prettier --write .",
+      "typecheck": "react-router typegen && tsc"
    },
    "dependencies": {
       "@hookform/resolvers": "^5.1.1",
