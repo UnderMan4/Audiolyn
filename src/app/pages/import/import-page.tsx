@@ -10,12 +10,6 @@ import {
 } from "@/features/import/lib/dialog-utils";
 import { readFileMetadata } from "@/features/import/lib/import-utils";
 
-import type { Route } from "./+types/import-page";
-
-export function meta({}: Route.MetaArgs) {
-   return [];
-}
-
 export default function ImportPage() {
    const { search } = useRouter();
 

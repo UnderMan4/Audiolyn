@@ -1,7 +1,7 @@
 import * as path from "@tauri-apps/api/path";
 import * as fs from "@tauri-apps/plugin-fs";
 import { platform } from "@tauri-apps/plugin-os";
-import { ArrowLeft, ArrowRight, Check, Save } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {

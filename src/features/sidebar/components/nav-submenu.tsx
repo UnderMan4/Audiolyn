@@ -1,6 +1,5 @@
 import { ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 import { BetterLink } from "src/components/better-link";
 import {
    CollapsibleContent,

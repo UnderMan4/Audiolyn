@@ -3,8 +3,8 @@ import { translations } from "./i18n";
 type DotNestedKeysLevel<T, L extends number> = [L] extends [0]
    ? never
    : {
-        [K in keyof T & (string | number)]: T[K] extends Record<string, any>
-           ? T[K] extends Function
+        [K in keyof T & (string | number)]: T[K] extends Record<string, unknown>
+           ? T[K] extends () => unknown
               ? never
               : DotNestedKeysLevel<T[K], Prev[L]> extends never
                 ? K // Only include if the next level has no keys (leaf)

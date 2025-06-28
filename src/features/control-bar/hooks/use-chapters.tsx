@@ -54,7 +54,7 @@ export const useChapters = (
          index: currentChapterIndex,
          progressPercent,
       };
-   }, [processedMarkers, currentTimeSeconds]);
+   }, [processedMarkers, currentTimeSeconds, totalLengthSeconds]);
 
    const calculatedChapters = useMemo<ChaptersIndicator.Chapter[]>(
       () =>
@@ -74,7 +74,7 @@ export const useChapters = (
                label: marker.label,
             };
          }),
-      [processedMarkers, currentTimeSeconds, totalLengthSeconds]
+      [processedMarkers, totalLengthSeconds]
    );
 
    const getChapterProgressWidth = useCallback(

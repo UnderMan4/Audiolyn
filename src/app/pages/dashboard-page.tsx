@@ -5,12 +5,6 @@ import {
    ChaptersIndicator,
 } from "@/features/control-bar/components";
 
-import type { Route } from "./+types/dashboard-page";
-
-export function meta({}: Route.MetaArgs) {
-   return [];
-}
-
 export default function DashboardPage() {
    const [progress, setProgress] = useState(45);
    return (

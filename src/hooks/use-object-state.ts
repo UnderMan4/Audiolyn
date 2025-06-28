@@ -6,7 +6,7 @@ export namespace UseObjectState {
     * - If `replace` is true, replaces the state with a new object or updater.
     * - If `replace` is false or omitted, merges a partial object or updater result into the state.
     */
-   export type Setter<T extends Record<string, any>> = {
+   export type Setter<T extends Record<string, unknown>> = {
       (value: Partial<T> | ((prev: T) => Partial<T>), replace?: false): void;
       (value: T | ((prev: T) => T), replace: true): void;
    };
@@ -15,7 +15,7 @@ export namespace UseObjectState {
     * Return type for useObjectState hook.
     * Tuple: [state, setter]
     */
-   export type Return<T extends Record<string, any>> = [T, Setter<T>];
+   export type Return<T extends Record<string, unknown>> = [T, Setter<T>];
 }
 
 /**
@@ -28,13 +28,13 @@ export namespace UseObjectState {
  * The setter merges partial updates by default. Pass `replace = true` to replace the state.
  * The setter accepts a partial object or an updater function.
  */
-export function useObjectState<T extends Record<string, any>>(
+export function useObjectState<T extends Record<string, unknown>>(
    initialState: T
 ): UseObjectState.Return<T> {
    const [state, setState] = useState<T>(initialState);
 
    const setObjectState: UseObjectState.Setter<T> = (
-      value: any,
+      value: unknown,
       replace: boolean = false
    ) => {
       setState((prev) => {

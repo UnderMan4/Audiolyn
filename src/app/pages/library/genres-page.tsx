@@ -1,9 +1,3 @@
-import type { Route } from "./+types/genres-page";
-
-export function meta({}: Route.MetaArgs) {
-   return [];
-}
-
 export default function GenresPage() {
    return <div>Genres</div>;
 }

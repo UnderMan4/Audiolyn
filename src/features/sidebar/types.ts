@@ -1,11 +1,12 @@
 import { LucideIcon } from "lucide-react";
 import { BetterLink } from "src/components/better-link";
 
+import { Intl } from "@/i18n/types";
 import { ToDiscoUnion } from "@/types/types";
 
 export type MenuItem = {
    id: string;
-   label: string;
+   label: Intl.Key;
    icon: LucideIcon;
    items?: SubMenuItem[];
    defaultOpen?: boolean;
@@ -17,7 +18,7 @@ export type MenuItem = {
 
 export type SubMenuItem = {
    id: string;
-   label: string;
+   label: Intl.Key;
    icon?: LucideIcon;
 } & ToDiscoUnion<{
    button: { onClick: () => void };

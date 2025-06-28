@@ -5,12 +5,6 @@ import { useSettingsStore } from "src/stores/settings-store";
 
 import { LibraryCard, WelcomeCard } from "@/features/wizard/components";
 
-import type { Route } from "./+types/wizard-page";
-
-export function meta({}: Route.MetaArgs) {
-   return [];
-}
-
 export namespace WizardPage {
    export type CardProps = {
       nextStep: () => void;

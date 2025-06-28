@@ -14,18 +14,21 @@ import {
 } from "@/utils/url-utils";
 
 export namespace UseRouter {
-   export type ReturnType<T extends {}> = Omit<Location, "state" | "search"> & {
+   export type ReturnType<T extends object> = Omit<
+      Location,
+      "state" | "search"
+   > & {
       state: T | undefined;
       search: Record<string, SearchParamValue>;
       navigate: NavigateFunction<T>;
    };
 
-   export type NavigateFunction<T extends {}> = (
+   export type NavigateFunction<T extends object> = (
       to: BetterLink.To,
       options?: NavigateOptions<T>
    ) => Promise<void> | void;
 
-   export type NavigateOptions<T extends {}> = Omit<
+   export type NavigateOptions<T extends object> = Omit<
       NavigateOptionsRaw,
       "state" | "search"
    > & {
