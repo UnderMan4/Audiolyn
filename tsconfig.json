@@ -23,12 +23,12 @@
       "baseUrl": ".",
 
       "paths": {
-         "@/*": ["app/*"]
+         "@/*": ["src/*"]
       },
       "rootDirs": [".", "./.react-router/types"]
    },
    "include": [
-      "app",
+      "src",
       "**/*",
       "**/.server/**/*",
       "**/.client/**/*",
