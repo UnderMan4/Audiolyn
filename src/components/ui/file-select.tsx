@@ -1,8 +1,9 @@
 import { open } from "@tauri-apps/plugin-dialog";
 import { File, Folder } from "lucide-react";
 import React from "react";
-import { useId } from "src/hooks";
 import { cn } from "src/lib/style-utils";
+
+import { useId } from "@/hooks/use-id";
 
 import { Button } from "./button";
 import { Label } from "./label";

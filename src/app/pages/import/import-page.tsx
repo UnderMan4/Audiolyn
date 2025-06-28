@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { Button } from "src/components/ui";
-import { useRouter } from "src/hooks";
 
+import { Button } from "@/components/ui/button";
 import {
    openSelectDirectoryDialog,
    openSelectMultipleDirectoriesDialog,
@@ -9,6 +8,7 @@ import {
    openSelectSingleFileDialog,
 } from "@/features/import/lib/dialog-utils";
 import { readFileMetadata } from "@/features/import/lib/import-utils";
+import { useRouter } from "@/hooks/use-router";
 
 export default function ImportPage() {
    const { search } = useRouter();

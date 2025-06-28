@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
+import { cn } from "src/lib/style-utils";
+import { SettingsStore, useSettingsStore } from "src/stores/settings-store";
+
 import {
    Select,
    SelectContent,
    SelectItem,
    SelectTrigger,
    SelectValue,
-} from "src/components/ui";
-import { cn } from "src/lib/style-utils";
-import { SettingsStore, useSettingsStore } from "src/stores/settings-store";
+} from "@/components/ui/select";
 
 export namespace LibraryMethodSelect {
    export type Props = Select.RootProps & {

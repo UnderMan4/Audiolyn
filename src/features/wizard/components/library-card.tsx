@@ -4,21 +4,21 @@ import { platform } from "@tauri-apps/plugin-os";
 import { ArrowLeft, Check } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FileSelect } from "src/components/ui/file-select";
+import { useSettingsStore } from "src/stores/settings-store";
+
+import { WizardPage } from "@/app/pages/wizard-page";
+import { Button } from "@/components/ui/button";
 import {
-   Button,
    Card,
    CardContent,
    CardDescription,
    CardFooter,
    CardHeader,
    CardTitle,
-} from "src/components/ui";
-import { FileSelect } from "src/components/ui/file-select";
-import { useLayoutAsyncEffect } from "src/hooks";
-import { useSettingsStore } from "src/stores/settings-store";
-
-import { WizardPage } from "@/app/pages/wizard-page";
+} from "@/components/ui/card";
 import { REGEX } from "@/config/constants";
+import { useLayoutAsyncEffect } from "@/hooks/use-async-effect";
 
 import { LibraryMethodSelect } from "./library-method-select";
 

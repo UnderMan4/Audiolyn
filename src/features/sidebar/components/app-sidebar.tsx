@@ -1,10 +1,9 @@
 import * as React from "react";
-import {
-   Sidebar,
-   SidebarContent,
-   SidebarFooter,
-   SidebarSeparator,
-} from "src/components/ui";
+
+import { Sidebar } from "@/components/ui/sidebar/sidebar";
+import { SidebarContent } from "@/components/ui/sidebar/sidebar-content";
+import { SidebarFooter } from "@/components/ui/sidebar/sidebar-footer";
+import { SidebarSeparator } from "@/components/ui/sidebar/sidebar-separator";
 
 import { footerItems, mainItems, secondaryItems } from "../sidebar-definitions";
 import { NavFooter } from "./nav-footer";

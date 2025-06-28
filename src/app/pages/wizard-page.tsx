@@ -3,7 +3,8 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { useSettingsStore } from "src/stores/settings-store";
 
-import { LibraryCard, WelcomeCard } from "@/features/wizard/components";
+import { LibraryCard } from "@/features/wizard/components/library-card";
+import { WelcomeCard } from "@/features/wizard/components/welcome-card";
 
 export namespace WizardPage {
    export type CardProps = {

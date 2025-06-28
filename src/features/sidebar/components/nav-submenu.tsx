@@ -1,17 +1,20 @@
 import { ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BetterLink } from "src/components/better-link";
+
 import {
    CollapsibleContent,
    CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
    DropdownMenuContent,
    DropdownMenuItem,
-   SidebarMenuAction,
-   SidebarMenuSub,
-   SidebarMenuSubButton,
-   SidebarMenuSubItem,
-   useSidebarContext,
-} from "src/components/ui";
+} from "@/components/ui/dropdown-menu";
+import { SidebarMenuAction } from "@/components/ui/sidebar/sidebar-menu-action";
+import { SidebarMenuSub } from "@/components/ui/sidebar/sidebar-menu-sub";
+import { SidebarMenuSubButton } from "@/components/ui/sidebar/sidebar-menu-sub-button";
+import { SidebarMenuSubItem } from "@/components/ui/sidebar/sidebar-menu-sub-item";
+import { useSidebarContext } from "@/components/ui/sidebar/sidebar-provider";
 
 import { MenuItem } from "../types";
 

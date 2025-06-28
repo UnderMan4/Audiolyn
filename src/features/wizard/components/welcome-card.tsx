@@ -2,15 +2,11 @@ import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelect } from "src/components/language-select";
 import { ThemeSelect } from "src/components/theme-select";
-import {
-   Button,
-   Card,
-   CardContent,
-   CardFooter,
-   Typography,
-} from "src/components/ui";
 
 import { WizardPage } from "@/app/pages/wizard-page";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Typography } from "@/components/ui/typography";
 
 export namespace WelcomeCard {
    export type Props = WizardPage.CardProps;

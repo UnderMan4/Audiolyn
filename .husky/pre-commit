@@ -1,3 +1,4 @@
-pnpm format
-git diff --name-only --cached | xargs -r git add
+echo "[PRE-COMMIT] Running pnpm check-ts..."
+pnpm check-ts
+echo "[PRE-COMMIT] Running pnpm lint..."
 pnpm lint

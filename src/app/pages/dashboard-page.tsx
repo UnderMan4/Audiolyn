@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-import {
-   AudiobookProgressBar,
-   ChaptersIndicator,
-} from "@/features/control-bar/components";
+import { AudiobookProgressBar } from "@/features/control-bar/components/audiobook-progress-bar";
+import { ChaptersIndicator } from "@/features/control-bar/components/chapters-indicator";
 
 export default function DashboardPage() {
    const [progress, setProgress] = useState(45);

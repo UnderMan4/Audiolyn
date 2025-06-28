@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 
-import { ChaptersIndicator } from "../components";
+import { ChaptersIndicator } from "../components/chapters-indicator";
 
 export const useChapters = (
    markers: ChaptersIndicator.Marker[],

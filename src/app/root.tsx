@@ -9,8 +9,10 @@ import {
    isRouteErrorResponse,
 } from "react-router";
 
+import { useAsyncEffect } from "@/hooks/use-async-effect";
+import { usePreferredDarkMode } from "@/hooks/use-preferred-dark-mode";
+
 import { LIBRARY_DIRECTORY } from "../config/constants";
-import { useAsyncEffect, usePreferredDarkMode } from "../hooks";
 import "../i18n/i18n";
 import {
    settingsStoreHandler,

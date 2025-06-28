@@ -1,8 +1,9 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import React from "react";
-import { useId } from "src/hooks";
 import { cn } from "src/lib/style-utils";
+
+import { useId } from "@/hooks/use-id";
 
 import { Label } from "./label";
 

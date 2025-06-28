@@ -2,7 +2,9 @@ import { ComponentPropsWithoutRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { BetterLink } from "src/components/better-link";
-import { DropdownMenuTrigger, SidebarMenuButton } from "src/components/ui";
+
+import { DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { SidebarMenuButton } from "@/components/ui/sidebar/sidebar-menu-button";
 
 import { MenuItem } from "../types";
 

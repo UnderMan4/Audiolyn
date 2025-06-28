@@ -1,7 +1,7 @@
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { cn } from "src/lib/style-utils";
 
-import { useChapters } from "../hooks";
+import { useChapters } from "../hooks/use-chapters";
 
 export namespace ChaptersIndicator {
    export type Props = {

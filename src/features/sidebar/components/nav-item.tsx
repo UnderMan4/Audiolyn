@@ -1,4 +1,6 @@
-import { Collapsible, DropdownMenu, SidebarMenuItem } from "src/components/ui";
+import { Collapsible } from "@/components/ui/collapsible";
+import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import { SidebarMenuItem } from "@/components/ui/sidebar/sidebar-menu-item";
 
 import { MenuItem } from "../types";
 import { NavButton } from "./nav-button";

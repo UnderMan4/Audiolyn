@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
-import { Titlebar } from "src/components/ui";
+
+import { Titlebar } from "@/components/ui/titlebar/titlebar";
 
 export default function TitlebarLayout() {
    return (

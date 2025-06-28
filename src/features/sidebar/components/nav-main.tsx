@@ -1,8 +1,6 @@
-import {
-   SidebarGroup,
-   SidebarGroupContent,
-   SidebarMenu,
-} from "src/components/ui";
+import { SidebarGroup } from "@/components/ui/sidebar/sidebar-group";
+import { SidebarGroupContent } from "@/components/ui/sidebar/sidebar-group-content";
+import { SidebarMenu } from "@/components/ui/sidebar/sidebar-menu";
 
 import { MenuItem } from "../types";
 import { NavItem } from "./nav-item";

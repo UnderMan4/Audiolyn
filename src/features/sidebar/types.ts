@@ -6,7 +6,7 @@ import { ToDiscoUnion } from "@/types/types";
 
 export type MenuItem = {
    id: string;
-   label: Intl.Key;
+   label: Intl.Key | (string & {});
    icon: LucideIcon;
    items?: SubMenuItem[];
    defaultOpen?: boolean;
@@ -18,7 +18,7 @@ export type MenuItem = {
 
 export type SubMenuItem = {
    id: string;
-   label: Intl.Key;
+   label: Intl.Key | (string & {});
    icon?: LucideIcon;
 } & ToDiscoUnion<{
    button: { onClick: () => void };

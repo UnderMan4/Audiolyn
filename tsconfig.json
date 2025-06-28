@@ -35,5 +35,11 @@
       ".react-router/types/**/*"
    ],
    "references": [{ "path": "./tsconfig.node.json" }],
-   "exclude": ["vite.config.d.ts"]
+   "exclude": [
+      "vite.config.d.ts",
+      "vite.config.ts",
+      "src-tauri",
+      "dist",
+      "node_modules"
+   ]
 }

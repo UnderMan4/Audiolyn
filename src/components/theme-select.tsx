@@ -9,7 +9,7 @@ import {
    SelectItem,
    SelectTrigger,
    SelectValue,
-} from "./ui";
+} from "./ui/select";
 
 export namespace ThemeSelect {
    export type Props = Omit<Select.TriggerProps, "label"> & {

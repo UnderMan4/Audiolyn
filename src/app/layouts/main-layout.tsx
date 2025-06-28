@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 import {
-   SidebarInset,
-   SidebarProvider,
-   SidebarTrigger,
-} from "src/components/ui";
-import {
    Breadcrumb,
    BreadcrumbItem,
    BreadcrumbLink,
@@ -16,7 +11,10 @@ import {
 import { Separator } from "src/components/ui/separator";
 import { useSettingsStore } from "src/stores/settings-store";
 
-import { AppSidebar } from "@/features/sidebar";
+import { SidebarInset } from "@/components/ui/sidebar/sidebar-inset";
+import { SidebarProvider } from "@/components/ui/sidebar/sidebar-provider";
+import { SidebarTrigger } from "@/components/ui/sidebar/sidebar-trigger";
+import { AppSidebar } from "@/features/sidebar/components/app-sidebar";
 
 export default () => {
    const navigate = useNavigate();
