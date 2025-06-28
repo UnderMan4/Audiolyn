@@ -1,2 +1,3 @@
 pnpm format
+git diff --name-only --cached | xargs -r git add
 pnpm lint
