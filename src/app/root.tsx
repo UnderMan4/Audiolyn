@@ -9,6 +9,7 @@ import {
    isRouteErrorResponse,
 } from "react-router";
 
+import { useDatabase } from "@/db/database-store";
 import { useAsyncEffect } from "@/hooks/use-async-effect";
 import { usePreferredDarkMode } from "@/hooks/use-preferred-dark-mode";
 
@@ -36,6 +37,7 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
    const { libraryLocation, setLibraryLocation, theme } = useSettingsStore();
+   const { loadDb } = useDatabase();
    useEffect(() => {
       settingsStoreHandler.start();
    }, []);
@@ -46,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
          const libraryPath = await path.join(homeDir, LIBRARY_DIRECTORY);
          setLibraryLocation(libraryPath);
       }
+      await loadDb();
    }, []);
 
    const isPreferredDarkMode = usePreferredDarkMode();

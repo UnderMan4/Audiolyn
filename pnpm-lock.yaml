@@ -55,6 +55,9 @@ importers:
          "@react-router/serve":
             specifier: 7.6.2
             version: 7.6.2(react-router@7.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.6.3)
+         "@sindresorhus/slugify":
+            specifier: ^2.2.1
+            version: 2.2.1
          "@tauri-apps/api":
             specifier: ^2
             version: 2.5.0
@@ -70,6 +73,9 @@ importers:
          "@tauri-apps/plugin-os":
             specifier: ~2.2.2
             version: 2.2.2
+         "@tauri-apps/plugin-sql":
+            specifier: ~2
+            version: 2.3.0
          "@tauri-apps/plugin-store":
             specifier: ~2.2.0
             version: 2.2.0
@@ -100,6 +106,9 @@ importers:
          isbot:
             specifier: ^5
             version: 5.1.28
+         litdb:
+            specifier: ^0.0.33
+            version: 0.0.33
          lucide-react:
             specifier: ^0.514.0
             version: 0.514.0(react@19.1.0)
@@ -1803,6 +1812,20 @@ packages:
             integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==,
          }
 
+   "@sindresorhus/slugify@2.2.1":
+      resolution:
+         {
+            integrity: sha512-MkngSCRZ8JdSOCHRaYd+D01XhvU3Hjy6MGl06zhOk614hp9EOAp5gIkBeQg7wtmxpitU6eAL4kdiRMcJa2dlrw==,
+         }
+      engines: { node: ">=12" }
+
+   "@sindresorhus/transliterate@1.6.0":
+      resolution:
+         {
+            integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==,
+         }
+      engines: { node: ">=12" }
+
    "@standard-schema/utils@0.3.0":
       resolution:
          {
@@ -1950,6 +1973,12 @@ packages:
             integrity: sha512-Ldux4ip+HGAcPUmuLT8EIkk6yafl5vK0P0c0byzAKzxJh7vxelVtdPONjfgTm96PbN24yjZNESY8CKo8qniluA==,
          }
 
+   "@tauri-apps/api@2.6.0":
+      resolution:
+         {
+            integrity: sha512-hRNcdercfgpzgFrMXWwNDBN0B7vNzOzRepy6ZAmhxi5mDLVPNrTpo9MGg2tN/F7JRugj4d2aF7E1rtPXAHaetg==,
+         }
+
    "@tauri-apps/cli-darwin-arm64@2.5.0":
       resolution:
          {
@@ -2079,6 +2108,12 @@ packages:
       resolution:
          {
             integrity: sha512-pZ03bQeRTgid5u5F5nVLhJ6+nS4caAZggwaeZMsChuFvV2SV+EEJkf4XhH1L5fsRnEKlNoyHO5oA5viAy7RtNw==,
+         }
+
+   "@tauri-apps/plugin-sql@2.3.0":
+      resolution:
+         {
+            integrity: sha512-JYwIocfsLaDWa41LMiZWuzts7yCJR+EpZPRmgpO7Gd7XiAS9S67dKz306j/k/d9XntB0YopMRBol2OIWMschuA==,
          }
 
    "@tauri-apps/plugin-store@2.2.0":
@@ -4283,6 +4318,12 @@ packages:
             integrity: sha512-xi6IyHML+c9+Q3W0S4fCQJOym42pyurFiJUHEcEyHS0CeKzia4yZDEsLlqOFykxOdHpNy0NmvVO31vcSqAxJCg==,
          }
       engines: { node: ">= 12.0.0" }
+
+   litdb@0.0.33:
+      resolution:
+         {
+            integrity: sha512-vDTufYily26GUx0YOg2umf/Vq1kupyv7vZNkc+el+cUDCS5VP4MJELM8KikP6eThdVtj6mDMYUeDW7I/xyogCg==,
+         }
 
    locate-path@6.0.0:
       resolution:
@@ -7308,6 +7349,15 @@ snapshots:
 
    "@rtsao/scc@1.1.0": {}
 
+   "@sindresorhus/slugify@2.2.1":
+      dependencies:
+         "@sindresorhus/transliterate": 1.6.0
+         escape-string-regexp: 5.0.0
+
+   "@sindresorhus/transliterate@1.6.0":
+      dependencies:
+         escape-string-regexp: 5.0.0
+
    "@standard-schema/utils@0.3.0": {}
 
    "@tailwindcss/node@4.1.10":
@@ -7383,6 +7433,8 @@ snapshots:
 
    "@tauri-apps/api@2.5.0": {}
 
+   "@tauri-apps/api@2.6.0": {}
+
    "@tauri-apps/cli-darwin-arm64@2.5.0":
       optional: true
 
@@ -7445,6 +7497,10 @@ snapshots:
    "@tauri-apps/plugin-os@2.2.2":
       dependencies:
          "@tauri-apps/api": 2.5.0
+
+   "@tauri-apps/plugin-sql@2.3.0":
+      dependencies:
+         "@tauri-apps/api": 2.6.0
 
    "@tauri-apps/plugin-store@2.2.0":
       dependencies:
@@ -8993,6 +9049,10 @@ snapshots:
          lightningcss-linux-x64-musl: 1.30.1
          lightningcss-win32-arm64-msvc: 1.30.1
          lightningcss-win32-x64-msvc: 1.30.1
+
+   litdb@0.0.33:
+      dependencies:
+         "@types/node": 22.15.31
 
    locate-path@6.0.0:
       dependencies:
