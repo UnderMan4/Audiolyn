@@ -192,9 +192,33 @@ export class AudiobookVersion extends BaseEntity {
 Table(AudiobookVersion, {
    columns: {
       id: { type: "INTEGER", primaryKey: true, autoIncrement: true },
-      audiobookId: { type: "INTEGER", required: true, alias: "audiobook_id" },
-      formatId: { type: "INTEGER", required: true, alias: "format_id" },
-      langId: { type: "INTEGER", required: true, alias: "lang_id" },
+      audiobookId: {
+         type: "INTEGER",
+         required: true,
+         alias: "audiobook_id",
+         references: {
+            table: Audiobook,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
+      formatId: {
+         type: "INTEGER",
+         required: true,
+         alias: "format_id",
+         references: {
+            table: Format,
+            on: ["DELETE", "RESTRICT"],
+         },
+      },
+      langId: {
+         type: "INTEGER",
+         required: true,
+         alias: "lang_id",
+         references: {
+            table: Lang,
+            on: ["DELETE", "RESTRICT"],
+         },
+      },
       duration: { type: "INTEGER", required: true },
       size: { type: "INTEGER", required: true },
       path: { type: "TEXT", required: true },
@@ -236,8 +260,24 @@ export class AudiobookAuthor extends BaseEntity {
 
 Table(AudiobookAuthor, {
    columns: {
-      audiobookId: { type: "INTEGER", required: true, alias: "audiobook_id" },
-      authorId: { type: "INTEGER", required: true, alias: "author_id" },
+      audiobookId: {
+         type: "INTEGER",
+         required: true,
+         alias: "audiobook_id",
+         references: {
+            table: Audiobook,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
+      authorId: {
+         type: "INTEGER",
+         required: true,
+         alias: "author_id",
+         references: {
+            table: Author,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
       ...baseEntityColumns,
    },
    table: {
@@ -258,8 +298,24 @@ export class AudiobookGenre extends BaseEntity {
 
 Table(AudiobookGenre, {
    columns: {
-      audiobookId: { type: "INTEGER", required: true, alias: "audiobook_id" },
-      genreId: { type: "INTEGER", required: true, alias: "genre_id" },
+      audiobookId: {
+         type: "INTEGER",
+         required: true,
+         alias: "audiobook_id",
+         references: {
+            table: Audiobook,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
+      genreId: {
+         type: "INTEGER",
+         required: true,
+         alias: "genre_id",
+         references: {
+            table: Genre,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
       ...baseEntityColumns,
    },
    table: {
@@ -280,8 +336,24 @@ export class AudiobookTag extends BaseEntity {
 
 Table(AudiobookTag, {
    columns: {
-      audiobookId: { type: "INTEGER", required: true, alias: "audiobook_id" },
-      tagId: { type: "INTEGER", required: true, alias: "tag_id" },
+      audiobookId: {
+         type: "INTEGER",
+         required: true,
+         alias: "audiobook_id",
+         references: {
+            table: Audiobook,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
+      tagId: {
+         type: "INTEGER",
+         required: true,
+         alias: "tag_id",
+         references: {
+            table: Tag,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
       ...baseEntityColumns,
    },
    table: {
@@ -306,8 +378,20 @@ Table(AudiobookVersionNarrator, {
          type: "INTEGER",
          required: true,
          alias: "audiobook_version_id",
+         references: {
+            table: AudiobookVersion,
+            on: ["DELETE", "CASCADE"],
+         },
       },
-      narratorId: { type: "INTEGER", required: true, alias: "narrator_id" },
+      narratorId: {
+         type: "INTEGER",
+         required: true,
+         alias: "narrator_id",
+         references: {
+            table: Narrator,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
       ...baseEntityColumns,
    },
    table: {
@@ -329,8 +413,24 @@ export class AudiobookSeries extends BaseEntity {
 
 Table(AudiobookSeries, {
    columns: {
-      audiobookId: { type: "INTEGER", required: true, alias: "audiobook_id" },
-      seriesId: { type: "INTEGER", required: true, alias: "series_id" },
+      audiobookId: {
+         type: "INTEGER",
+         required: true,
+         alias: "audiobook_id",
+         references: {
+            table: Audiobook,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
+      seriesId: {
+         type: "INTEGER",
+         required: true,
+         alias: "series_id",
+         references: {
+            table: Series,
+            on: ["DELETE", "CASCADE"],
+         },
+      },
       numberInSeries: {
          type: "REAL",
          required: false,

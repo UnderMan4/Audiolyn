@@ -1,3 +1,4 @@
+import { invoke } from "@tauri-apps/api/core";
 import { sqlite as $ } from "litdb";
 import { useState } from "react";
 
@@ -56,6 +57,18 @@ export default function DashboardPage() {
                }}
             >
                tests
+            </Button>
+            <Button
+               onClick={async () => {
+                  const metadata = await invoke("read_metadata", {
+                     filePath: "C:/Users/filip/Desktop/audiobook.m4b",
+                     taskId: "aa",
+                  });
+
+                  console.log(metadata);
+               }}
+            >
+               Multithreading
             </Button>
          </div>
       </div>

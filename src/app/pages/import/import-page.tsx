@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
+import { readMetadata } from "@/features/import/api/metadata";
 import {
    openSelectDirectoryDialog,
    openSelectMultipleDirectoriesDialog,
    openSelectMultipleFilesDialog,
    openSelectSingleFileDialog,
 } from "@/features/import/lib/dialog-utils";
-import { readFileMetadata } from "@/features/import/lib/import-utils";
 import { useRouter } from "@/hooks/use-router";
 
 export default function ImportPage() {
@@ -18,15 +18,8 @@ export default function ImportPage() {
       (openFn: () => Promise<string | string[] | null>) => async () => {
          const filePath = await openFn();
          if (filePath) {
-            const fileArray = Array.isArray(filePath) ? filePath : [filePath];
-
-            const fileMetadata = await Promise.all(
-               fileArray.map(async (file) => {
-                  const metadata = await readFileMetadata(file);
-                  return { file, metadata }; // Replace null with actual metadata if needed
-               })
-            );
-            console.log("Selected files:", fileMetadata);
+            const fileMetadata = await readMetadata(filePath);
+            console.table(fileMetadata);
          } else {
             console.log("No file selected");
          }
