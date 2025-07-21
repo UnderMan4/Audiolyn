@@ -34,6 +34,7 @@ export default defineConfig([
       rules: {
          "react-hooks/exhaustive-deps": "warn",
          "@typescript-eslint/no-namespace": "off",
+         "eslint-plugin-prettier/prettier": "error",
       },
    },
    {
