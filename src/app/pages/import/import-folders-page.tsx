@@ -10,7 +10,7 @@ import {
 } from "@/features/import/lib/dialog-utils";
 import { useRouter } from "@/hooks/use-router";
 
-export default function ImportPage() {
+export default function ImportFoldersPage() {
    const { search } = useRouter();
 
    useEffect(() => {}, [search.importMethod]);

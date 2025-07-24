@@ -1,21 +1,22 @@
 {
-   "common": {
-      "back": "Powrót",
-      "next": "Dalej"
-   },
-   "library": {
-      "error": "Podana ścieżka jest nieprawidłowa",
-      "notEmpty": {
-         "description": "Jeśli używasz istniejącej biblioteki AudioLyn, możesz zignorować tę wiadomość. W przeciwnym razie należy pamiętać, że wybranie nieprawidłowego katalogu jako lokalizacji biblioteki może prowadzić do późniejszych problemów.",
-         "title": "Wybrany katalog nie jest pusty"
-      },
-      "selectDirectory": "Wybierz katalog",
-      "subtitle": "Wybierz, gdzie będzie przechowywana biblioteka audiobooków i jak chcesz nią zarządzać.",
-      "title": "Biblioteka"
-   },
-   "welcome": {
-      "start": "Start",
-      "subtitle": "Naciśnij „Start”, aby rozpocząć proces konfiguracji.",
-      "title": "Witamy w Audiolyn!"
-   }
+  "common": {
+    "back": "Powrót",
+    "finish": "Skończyć",
+    "next": "Dalej"
+  },
+  "library": {
+    "error": "Podana ścieżka jest nieprawidłowa",
+    "notEmpty": {
+      "description": "Jeśli używasz istniejącej biblioteki AudioLyn, możesz zignorować tę wiadomość. W przeciwnym razie należy pamiętać, że wybranie nieprawidłowego katalogu jako lokalizacji biblioteki może prowadzić do późniejszych problemów.",
+      "title": "Wybrany katalog nie jest pusty"
+    },
+    "selectDirectory": "Wybierz katalog",
+    "subtitle": "Wybierz, gdzie będzie przechowywana biblioteka audiobooków i jak chcesz nią zarządzać.",
+    "title": "Biblioteka"
+  },
+  "welcome": {
+    "start": "Start",
+    "subtitle": "Naciśnij „Start”, aby rozpocząć proces konfiguracji.",
+    "title": "Witamy w Audiolyn!"
+  }
 }

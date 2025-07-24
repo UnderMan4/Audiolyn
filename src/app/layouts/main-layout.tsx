@@ -14,6 +14,7 @@ import { useSettingsStore } from "src/stores/settings-store";
 import { SidebarInset } from "@/components/ui/sidebar/sidebar-inset";
 import { SidebarProvider } from "@/components/ui/sidebar/sidebar-provider";
 import { SidebarTrigger } from "@/components/ui/sidebar/sidebar-trigger";
+import { Breadcrumbs } from "@/features/header/components/breadcrumbs";
 import { AppSidebar } from "@/features/sidebar/components/app-sidebar";
 
 export default () => {
@@ -36,7 +37,8 @@ export default () => {
                      orientation="vertical"
                      className="mr-2 data-[orientation=vertical]:h-4"
                   />
-                  <Breadcrumb>
+                  <Breadcrumbs />
+                  {/* <Breadcrumb>
                      <BreadcrumbList>
                         <BreadcrumbItem className="hidden md:block">
                            <BreadcrumbLink href="#">
@@ -48,7 +50,7 @@ export default () => {
                            <BreadcrumbPage>Data Fetching</BreadcrumbPage>
                         </BreadcrumbItem>
                      </BreadcrumbList>
-                  </Breadcrumb>
+                  </Breadcrumb> */}
                </div>
             </header>
             <Separator className="mb-2" />

@@ -14,5 +14,25 @@
       "system": "System Language",
       "en_US": "English",
       "pl_PL": "polski (Polish)"
+   },
+   "breadcrumbs": {
+      "dashboard": {
+         "index": "Dashboard"
+      },
+      "library": {
+         "index": "Library",
+         "authors": "Authors",
+         "languages": "Languages",
+         "genres": "Genres",
+         "series": "Series"
+      },
+      "import": {
+         "index": "Import",
+         "files": "Files",
+         "folders": "Folders"
+      },
+      "settings": {
+         "index": "Settings"
+      }
    }
 }

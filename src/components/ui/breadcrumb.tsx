@@ -3,13 +3,13 @@ import { ChevronRight, MoreHorizontal } from "lucide-react";
 import React from "react";
 import { cn } from "src/lib/style-utils";
 
+import { BetterLink } from "../better-link";
+
 export namespace Breadcrumb {
    export type RootProps = React.ComponentProps<"nav">;
    export type ListProps = React.ComponentProps<"ol">;
    export type ItemProps = React.ComponentProps<"li">;
-   export type LinkProps = React.ComponentProps<"a"> & {
-      asChild?: boolean;
-   };
+   export type LinkProps = BetterLink.Props;
    export type PageProps = React.ComponentProps<"span">;
    export type SeparatorProps = React.ComponentProps<"li">;
    export type EllipsisProps = React.ComponentProps<"span">;
@@ -49,16 +49,19 @@ export const BreadcrumbItem = ({
 };
 
 export const BreadcrumbLink = ({
-   asChild,
    className,
+   to,
    ...props
 }: Breadcrumb.LinkProps) => {
-   const Comp = asChild ? Slot : "a";
-
    return (
-      <Comp
+      <BetterLink
          data-slot="breadcrumb-link"
-         className={cn("hover:text-foreground transition-colors", className)}
+         to={to}
+         className={cn(
+            "transition-colors",
+            { "hover:text-foreground": to },
+            className
+         )}
          {...props}
       />
    );

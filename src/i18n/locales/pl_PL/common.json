@@ -1,18 +1,38 @@
 {
-   "test": "TestPL",
-   "sidebar": {
-      "dashboard": "Panel",
-      "library": "Biblioteka",
-      "authors": "Autorzy",
-      "genres": "Gatunki",
-      "languages": "Języki",
-      "series": "Serie",
-      "settings": "Ustawienia",
-      "sr_chevron": "Przełącz"
+   "breadcrumbs": {
+      "dashboard": {
+         "index": "Panel"
+      },
+      "import": {
+         "files": "Pliki",
+         "folders": "Foldery",
+         "index": "Importuj"
+      },
+      "library": {
+         "index": "Biblioteka",
+         "authors": "Autorzy",
+         "genres": "Gatunki",
+         "languages": "Języki",
+         "series": "Serie"
+      },
+      "settings": {
+         "index": "Ustawienia"
+      }
    },
    "languages": {
       "en_US": "angielski (English)",
       "pl_PL": "polski",
       "system": "Język systemowy"
-   }
+   },
+   "sidebar": {
+      "authors": "Autorzy",
+      "dashboard": "Panel",
+      "genres": "Gatunki",
+      "languages": "Języki",
+      "library": "Biblioteka",
+      "series": "Serie",
+      "settings": "Ustawienia",
+      "sr_chevron": "Przełącz"
+   },
+   "test": "TestPL"
 }
