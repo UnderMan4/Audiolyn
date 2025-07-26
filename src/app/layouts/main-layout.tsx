@@ -1,13 +1,5 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
-import {
-   Breadcrumb,
-   BreadcrumbItem,
-   BreadcrumbLink,
-   BreadcrumbList,
-   BreadcrumbPage,
-   BreadcrumbSeparator,
-} from "src/components/ui/breadcrumb";
 import { Separator } from "src/components/ui/separator";
 import { useSettingsStore } from "src/stores/settings-store";
 
@@ -38,19 +30,6 @@ export default () => {
                      className="mr-2 data-[orientation=vertical]:h-4"
                   />
                   <Breadcrumbs />
-                  {/* <Breadcrumb>
-                     <BreadcrumbList>
-                        <BreadcrumbItem className="hidden md:block">
-                           <BreadcrumbLink href="#">
-                              Building Your Application
-                           </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator className="hidden md:block" />
-                        <BreadcrumbItem>
-                           <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                        </BreadcrumbItem>
-                     </BreadcrumbList>
-                  </Breadcrumb> */}
                </div>
             </header>
             <Separator className="mb-2" />

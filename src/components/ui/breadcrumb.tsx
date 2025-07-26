@@ -1,4 +1,3 @@
-import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import React from "react";
 import { cn } from "src/lib/style-utils";
@@ -9,7 +8,9 @@ export namespace Breadcrumb {
    export type RootProps = React.ComponentProps<"nav">;
    export type ListProps = React.ComponentProps<"ol">;
    export type ItemProps = React.ComponentProps<"li">;
-   export type LinkProps = BetterLink.Props;
+   export type LinkProps = Omit<BetterLink.Props, "to"> & {
+      to?: BetterLink.To;
+   };
    export type PageProps = React.ComponentProps<"span">;
    export type SeparatorProps = React.ComponentProps<"li">;
    export type EllipsisProps = React.ComponentProps<"span">;
@@ -53,6 +54,10 @@ export const BreadcrumbLink = ({
    to,
    ...props
 }: Breadcrumb.LinkProps) => {
+   if (!to) {
+      return <span {...props} />;
+   }
+
    return (
       <BetterLink
          data-slot="breadcrumb-link"
@@ -77,7 +82,7 @@ export const BreadcrumbPage = ({
          role="link"
          aria-disabled="true"
          aria-current="page"
-         className={cn("text-foreground font-normal", className)}
+         className={cn("text-foreground font-normal font-bold", className)}
          {...props}
       />
    );

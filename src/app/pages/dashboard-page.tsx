@@ -2,6 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { sqlite as $ } from "litdb";
 import { useState } from "react";
 
+import { BetterLink } from "@/components/better-link";
 import { Button } from "@/components/ui/button";
 import { useDatabase } from "@/db/database-store";
 import { Genre } from "@/db/schema";
@@ -70,6 +71,8 @@ export default function DashboardPage() {
             >
                Multithreading
             </Button>
+
+            <BetterLink to="/non-existent">Link does not exist</BetterLink>
          </div>
       </div>
    );

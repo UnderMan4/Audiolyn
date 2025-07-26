@@ -71,4 +71,8 @@ export const routesMap: Record<string, RouteDefinition> = {
       label: "common.breadcrumbs.import.folders",
       path: "/import/folders",
    },
+   settings: {
+      label: "common.breadcrumbs.settings.index",
+      path: "/settings",
+   },
 };

@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Fragment } from "react/jsx-runtime";
 
-import { Routes, routesMap } from "@/app/routes";
-import { BetterLink } from "@/components/better-link";
+import { routesMap } from "@/app/routes";
 import {
    Breadcrumb,
    BreadcrumbItem,
@@ -18,18 +17,21 @@ export const Breadcrumbs = () => {
 
    const segments = pathname.split("/").filter(Boolean);
 
+   // Ensure that dashboard is displayed as its route is the root
+   if (segments.length === 0) {
+      segments.push("dashboard");
+   }
+
    const { t } = useTranslation();
 
    return (
       <Breadcrumb>
          <BreadcrumbList>
-            {segments.map((segment, index) => {
-               const path = segments.slice(0, index + 1).join("/") as Routes;
-               console.log("🚀 ~ {segments.map ~ path:", path);
+            {segments.map((_, index) => {
+               const path = segments.slice(0, index + 1).join("/");
                const elem = routesMap[path];
-               console.log("🚀 ~ {segments.map ~ elem:", elem);
                if (!elem) {
-                  return null; // Skip if no route definition found
+                  return null;
                }
 
                if (index === segments.length - 1) {

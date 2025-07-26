@@ -8,5 +8,5 @@
    "importOrder": ["^@/(.*)$", "^[./]"],
    "importOrderSeparation": true,
    "importOrderSortSpecifiers": true,
-   "endOfLine": "lf"
+   "endOfLine": "crlf"
 }
