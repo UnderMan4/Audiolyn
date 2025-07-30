@@ -3,8 +3,10 @@ use super::types::{AudiobookInfo, AudiobookInfoBuilder, Chapter, CoverImage};
 use crate::utils;
 use ffmpeg_next as ffmpeg;
 use lofty;
+use lofty::config::{ParseOptions, ParsingMode};
 use lofty::picture::Picture;
 use lofty::prelude::*;
+use lofty::probe::Probe;
 
 fn convert_picture_to_cover_image(picture: &Picture) -> CoverImage {
     CoverImage {
@@ -19,7 +21,9 @@ fn convert_picture_to_cover_image(picture: &Picture) -> CoverImage {
 }
 
 pub fn get_metadata(file_path: &str) -> Result<AudiobookInfo, Box<dyn std::error::Error>> {
-    let media = lofty::read_from_path(file_path)?;
+    let media = Probe::open(file_path)?
+        .options(ParseOptions::new().parsing_mode(ParsingMode::Relaxed))
+        .read()?;
 
     let mut builder = AudiobookInfoBuilder::default();
     {
@@ -40,8 +44,6 @@ pub fn get_metadata(file_path: &str) -> Result<AudiobookInfo, Box<dyn std::error
     }
 
     if let Some(tag) = media.primary_tag() {
-        dbg!(&tag.pictures());
-
         builder.cover_images(
             tag.pictures()
                 .iter()

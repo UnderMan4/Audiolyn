@@ -1,8 +1,7 @@
+import qs from "qs";
 import { useMemo } from "react";
 import { Link } from "react-router";
 import type { To } from "react-router";
-
-import { SearchParamValue, objectToSearchParams } from "@/utils/url-utils";
 
 export namespace BetterLink {
    export type Props = Omit<
@@ -15,7 +14,7 @@ export namespace BetterLink {
       | string
       | {
            pathname: string;
-           search?: Record<string, SearchParamValue>;
+           search?: Record<string, unknown>;
            hash?: string;
         };
 }
@@ -25,7 +24,9 @@ export const BetterLink = ({ to, ...props }: BetterLink.Props) => {
       if (typeof to === "string") {
          return to;
       }
-      const search = objectToSearchParams(to.search || {});
+
+      const search = qs.stringify(to.search);
+
       return {
          pathname: to.pathname,
          search: search,

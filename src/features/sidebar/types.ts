@@ -1,12 +1,12 @@
 import { LucideIcon } from "lucide-react";
 import { BetterLink } from "src/components/better-link";
 
-import { Intl } from "@/i18n/types";
 import { ToDiscoUnion } from "@/types/types";
 
 export type MenuItem = {
    id: string;
-   label: Intl.Key | (string & {});
+   label: string;
+   description?: string;
    icon: LucideIcon;
    items?: SubMenuItem[];
    defaultOpen?: boolean;
@@ -18,9 +18,16 @@ export type MenuItem = {
 
 export type SubMenuItem = {
    id: string;
-   label: Intl.Key | (string & {});
+   label: string;
+   description?: string;
    icon?: LucideIcon;
 } & ToDiscoUnion<{
-   button: { onClick: () => void };
+   button: { onClick: (() => void) | (() => Promise<void>) };
    link: { to: BetterLink.To };
 }>;
+
+export type SidebarDefinitions = {
+   mainItems: MenuItem[];
+   secondaryItems: MenuItem[];
+   footerItems: MenuItem[];
+};

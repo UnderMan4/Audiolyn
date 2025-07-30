@@ -1,3 +1,4 @@
+import qs from "qs";
 import { useCallback, useMemo } from "react";
 import {
    Location,
@@ -7,19 +8,12 @@ import {
 } from "react-router";
 import { BetterLink } from "src/components/better-link";
 
-import {
-   SearchParamValue,
-   objectToSearchParams,
-   searchParamsToObject,
-} from "@/utils/url-utils";
-
 export namespace UseRouter {
    export type ReturnType<T extends object> = Omit<
       Location,
       "state" | "search"
    > & {
-      state: T | undefined;
-      search: Record<string, SearchParamValue>;
+      search: T;
       navigate: NavigateFunction<T>;
    };
 
@@ -32,13 +26,12 @@ export namespace UseRouter {
       NavigateOptionsRaw,
       "state" | "search"
    > & {
-      state?: T;
-      search?: Record<string, SearchParamValue>;
+      search?: T;
    };
 }
 
 export const useRouter = <T extends object>(): UseRouter.ReturnType<T> => {
-   const { state, search, ...rest } = useLocation();
+   const { search, ...rest } = useLocation();
    const navigateRaw = useNavigate();
    const navigate = useCallback(
       (to: BetterLink.To, options?: UseRouter.NavigateOptions<T>) => {
@@ -47,7 +40,7 @@ export const useRouter = <T extends object>(): UseRouter.ReturnType<T> => {
          const { search, ...newTo } = to;
          return navigateRaw(
             {
-               search: objectToSearchParams(search),
+               search: qs.stringify(search),
                ...newTo,
             },
             options
@@ -56,12 +49,34 @@ export const useRouter = <T extends object>(): UseRouter.ReturnType<T> => {
       [navigateRaw]
    );
 
-   const searchParams = useMemo(() => searchParamsToObject(search), [search]);
+   const searchParams = useMemo(
+      () =>
+         qs.parse(search, {
+            ignoreQueryPrefix: true,
+            decoder: (str, defaultDecoder, charset, type) => {
+               if (type === "key") {
+                  return defaultDecoder(str, charset);
+               }
+               const value = defaultDecoder(str, charset);
+
+               if (value === "true") return true;
+               if (value === "false") return false;
+               if (value === "null") return null;
+               if (value === "undefined") return undefined;
+               if (/^\d+$/.test(value)) return parseInt(value, 10);
+               if (/^\d+\.\d+$/.test(value)) return parseFloat(value);
+               if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value))
+                  return new Date(value);
+
+               return value;
+            },
+         }),
+      [search]
+   );
 
    return {
-      state,
       navigate,
-      search: searchParams,
+      search: searchParams as T,
       ...rest,
    };
 };

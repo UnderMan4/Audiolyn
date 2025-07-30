@@ -1,4 +1,4 @@
-echo "[PRE-COMMIT] Running pnpm check-ts..."
-pnpm check-ts
+echo "[PRE-COMMIT] Running pnpm typecheck..."
+pnpm typecheck
 echo "[PRE-COMMIT] Running pnpm lint..."
 pnpm lint

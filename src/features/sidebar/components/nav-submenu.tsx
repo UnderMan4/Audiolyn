@@ -51,12 +51,31 @@ export const NavSubmenu = ({ item }: NavCollapsible.Props) => {
                            {subItem.type === "link" ? (
                               <BetterLink to={subItem.to}>
                                  {subItem.icon && <subItem.icon />}
-                                 <span>{t(subItem.label)}</span>
+                                 <div>
+                                    <span>{t(subItem.label)}</span>
+                                    {subItem.description && (
+                                       <span className="text-xs text-muted-foreground">
+                                          {t(subItem.description)}
+                                       </span>
+                                    )}
+                                 </div>
                               </BetterLink>
                            ) : (
-                              <button onClick={subItem.onClick}>
+                              <button
+                                 onClick={subItem.onClick}
+                                 className="text-left"
+                              >
                                  {subItem.icon && <subItem.icon />}
-                                 <span>{t(subItem.label)}</span>
+                                 <div>
+                                    <span className="text-left">
+                                       {t(subItem.label)}
+                                    </span>
+                                    {subItem.description && (
+                                       <span className="text-xs text-muted-foreground">
+                                          {t(subItem.description)}
+                                       </span>
+                                    )}
+                                 </div>
                               </button>
                            )}
                         </SidebarMenuSubButton>
@@ -84,12 +103,26 @@ export const NavSubmenu = ({ item }: NavCollapsible.Props) => {
                   {subItem.type === "link" ? (
                      <BetterLink to={subItem.to}>
                         {subItem.icon && <subItem.icon />}
-                        <span>{t(subItem.label)}</span>
+                        <div className="flex flex-col gap-1">
+                           <span>{t(subItem.label)}</span>
+                           {subItem.description && (
+                              <span className="text-xs text-muted-foreground">
+                                 {t(subItem.description)}
+                              </span>
+                           )}
+                        </div>
                      </BetterLink>
                   ) : (
                      <button onClick={subItem.onClick} className="w-full">
                         {subItem.icon && <subItem.icon />}
-                        <span>{t(subItem.label)}</span>
+                        <div className="flex flex-col gap-1">
+                           <span className="text-left">{t(subItem.label)}</span>
+                           {subItem.description && (
+                              <span className="text-xs text-muted-foreground">
+                                 {t(subItem.description)}
+                              </span>
+                           )}
+                        </div>
                      </button>
                   )}
                </DropdownMenuItem>

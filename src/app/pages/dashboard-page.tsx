@@ -3,7 +3,9 @@ import { sqlite as $ } from "litdb";
 import { useState } from "react";
 
 import { BetterLink } from "@/components/better-link";
+import { PageContent } from "@/components/layout/page-content";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { useDatabase } from "@/db/database-store";
 import { Genre } from "@/db/schema";
 import { convertQuery } from "@/db/utils";
@@ -14,7 +16,7 @@ export default function DashboardPage() {
    const [progress, setProgress] = useState(45);
    const { db } = useDatabase();
    return (
-      <div className="flex flex-col gap-4">
+      <PageContent className="flex flex-col gap-4">
          <AudiobookProgressBar
             currentTimeSeconds={progress}
             totalLengthSeconds={123}
@@ -74,6 +76,11 @@ export default function DashboardPage() {
 
             <BetterLink to="/non-existent">Link does not exist</BetterLink>
          </div>
-      </div>
+         <div className="flex gap-4">
+            <Spinner size="sm" />
+            <Spinner size="md" />
+            <Spinner size="lg" />
+         </div>
+      </PageContent>
    );
 }

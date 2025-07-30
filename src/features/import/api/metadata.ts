@@ -1,6 +1,6 @@
 import { invoke } from "@tauri-apps/api/core";
 
-import { Metadata } from "../types/metadata";
+import { AudiobookInfo } from "../types/metadata";
 
 export const readMetadata = async (
    path: string[] | string,
@@ -8,11 +8,19 @@ export const readMetadata = async (
 ) => {
    const filePaths = Array.isArray(path) ? path : [path];
    const promises = filePaths.map((filePath) =>
-      invoke<Metadata>("read_metadata", {
+      invoke<AudiobookInfo>("read_metadata", {
          filePath,
          taskId,
       })
    );
 
-   return Promise.all(promises);
+   const results = await Promise.all(promises);
+
+   return results.map((result) => ({
+      ...result,
+      coverImages: result.coverImages.map((img) => ({
+         ...img,
+         data: new Uint8Array(img.data),
+      })),
+   }));
 };

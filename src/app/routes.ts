@@ -43,7 +43,10 @@ export const routesMap: Record<string, RouteDefinition> = {
       label: "common.breadcrumbs.dashboard.index",
       path: "/dashboard",
    },
-   library: { label: "common.breadcrumbs.library.index", path: "/library" },
+   library: {
+      label: "common.breadcrumbs.library.index",
+      path: "/library",
+   },
    "library/authors": {
       label: "common.breadcrumbs.library.authors",
       path: "/library/authors",

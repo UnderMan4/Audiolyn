@@ -1,36 +1,53 @@
-export type Welcome = {
-   readonly metadata: Metadata;
-   readonly coverImages: CoverImage[];
-   readonly chapters: Chapter[];
-   readonly duration: number;
-   readonly bitrate: number;
-   readonly sampleRate: number;
-   readonly channels: number;
-   readonly bitDepth: null;
-};
-
 export type Chapter = {
-   readonly id: number;
-   readonly title: string;
-   readonly startTime: number;
+   id: number;
+   title?: string;
+   startTime: number;
 };
 
 export type CoverImage = {
-   readonly data: number[];
-   readonly mimeType: string;
-   readonly pictureType: string;
-   readonly extension: string;
+   data: Uint8Array;
+   mimeType?: string;
+   pictureType?: string;
+   extension?: string;
+};
+
+export type AudiobookInfo = {
+   metadata: Record<string, string>;
+   coverImages: CoverImage[];
+   chapters?: Chapter[];
+   duration: bigint; // Use bigint for u128
+   bitrate?: number;
+   sampleRate?: number;
+   channels?: number;
+   bitDepth?: number;
 };
 
 export type Metadata = {
-   readonly creationTime: Date;
-   readonly title: string;
-   readonly compatibleBrands: string;
-   readonly artist: string;
-   readonly composer: string;
-   readonly majorBrand: string;
-   readonly track: string;
-   readonly album: string;
-   readonly genre: string;
-   readonly minorVersion: string;
+   [key: string]: string | undefined;
+   encoder?: string;
+   artist?: string;
+   album?: string;
+   date?: string;
+   title?: string;
+   track?: string;
+   minor_version?: string;
+   composer?: string;
+   compatible_brands?: string;
+   comment?: string;
+   description?: string;
+   genre?: string;
+   major_brand?: string;
+   media_type?: string;
+   album_artist?: string;
+   copyright?: string;
+   creation_time?: string;
+   asin?: string;
+   narratedBy?: string;
+   product_id?: string;
+   AUTHOR?: string;
+   RATING?: string;
+   iTunSMPB?: string;
+   SUBTITLE?: string;
+   NARRATEDBY?: string;
+   grouping?: string;
 };

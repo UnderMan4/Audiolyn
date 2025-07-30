@@ -5,7 +5,7 @@ import { SidebarContent } from "@/components/ui/sidebar/sidebar-content";
 import { SidebarFooter } from "@/components/ui/sidebar/sidebar-footer";
 import { SidebarSeparator } from "@/components/ui/sidebar/sidebar-separator";
 
-import { footerItems, mainItems, secondaryItems } from "../sidebar-definitions";
+import { useSidebarDefinitions } from "../hooks/use-sidebar-definitions";
 import { NavFooter } from "./nav-footer";
 import { NavMain } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
@@ -15,6 +15,7 @@ export namespace AppSidebar {
 }
 
 export function AppSidebar({ ...props }: AppSidebar.Props) {
+   const { mainItems, secondaryItems, footerItems } = useSidebarDefinitions();
    return (
       <Sidebar variant="floating" {...props}>
          <SidebarContent>

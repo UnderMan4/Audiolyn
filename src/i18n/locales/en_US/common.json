@@ -34,5 +34,14 @@
       "settings": {
          "index": "Settings"
       }
+   },
+   "openDialog": {
+      "titles": {
+         "importFiles": "Select files to import",
+         "importFolders": "Select folders to import"
+      },
+      "filters": {
+         "audioFiles": "Audio Files"
+      }
    }
 }

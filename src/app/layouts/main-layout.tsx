@@ -33,9 +33,9 @@ export default () => {
                </div>
             </header>
             <Separator className="mb-2" />
-            <div className="p-2 overflow-auto min-h-0">
-               <Outlet />
-            </div>
+            {/* <div className="p-2 overflow-auto min-h-0"> */}
+            <Outlet />
+            {/* </div> */}
          </SidebarInset>
       </SidebarProvider>
    );

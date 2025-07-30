@@ -16,7 +16,10 @@ async fn read_metadata(file_path: String) -> Response {
 
     match metadata {
         Ok(info) => Response::new(serde_json::to_string(&info).unwrap()),
-        Err(e) => Response::new(format!("Error: {}", e)),
+        Err(e) => {
+            dbg!("Error reading metadata: {}", &e);
+            Response::new(format!("Error: {}", e))
+        }
     }
 }
 

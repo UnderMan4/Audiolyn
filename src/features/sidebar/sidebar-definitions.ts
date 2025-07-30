@@ -1,5 +1,6 @@
 import {
    File,
+   Files,
    Folder,
    Hash,
    Import,
@@ -76,23 +77,37 @@ export const secondaryItems: MenuItem[] = [
       label: "Import",
       icon: Import,
       type: "dropdown",
+      //TODO: Add translations for these labels
       items: [
          {
-            id: "import-file",
-            label: "Import File",
+            id: "import-files-single",
+            label: "Import files",
+            description: "Single audiobook",
             type: "link",
             icon: File,
-            to: { pathname: "/import/files", search: { importMethod: "file" } },
+            to: {
+               pathname: "/import/files",
+               search: { singleAudiobook: true },
+            },
          },
          {
-            id: "import-folder",
-            label: "Import Folder",
+            id: "import-files-multiple",
+            label: "Import files",
+            description: "Multiple audiobooks",
+            type: "link",
+            icon: Files,
+            to: {
+               pathname: "/import/files",
+               search: { singleAudiobook: false },
+            },
+         },
+         {
+            id: "import-folders",
+            label: "Import Folders",
+            description: "Each folder as audiobook",
             icon: Folder,
             type: "link",
-            to: {
-               pathname: "/import/folders",
-               search: { importMethod: "folder" },
-            },
+            to: "/import/folders",
          },
       ],
    },
