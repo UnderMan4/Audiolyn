@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useDatabase } from "@/db/database-store";
 import { GenreEntity } from "@/db/entities/genre-entity";
+import { ops } from "@/db/utils";
 import { AudiobookProgressBar } from "@/features/control-bar/components/audiobook-progress-bar";
 import { ChaptersIndicator } from "@/features/control-bar/components/chapters-indicator";
 
@@ -50,20 +51,34 @@ export default function DashboardPage() {
             </Button>
             <Button
                onClick={async () => {
-                  const genres = await services.genreService.getAll();
-                  console.table(genres);
+                  const genres = await services.genreService.getAll({
+                     pageNumber: 1,
+                     pageSize: 10,
+                  });
+                  const { items, ...rest } = genres;
+
+                  console.table(items);
+                  console.table(rest);
                }}
             >
                Get genres
             </Button>
             <Button
                onClick={async () => {
-                  const genres =
-                     await services.genreService.getByName("Fiction");
-                  console.table(genres);
+                  const genres = await services.genreService.get(
+                     (entity) =>
+                        entity.where((e) => ops.like(e.name, "%Fiction%")),
+                     {
+                        pageNumber: 1,
+                        pageSize: 2,
+                     }
+                  );
+                  const { items, ...rest } = genres;
+                  console.table(items);
+                  console.table(rest);
                }}
             >
-               Get genres like
+               Get genres filtered
             </Button>
             <Button
                onClick={async () => {

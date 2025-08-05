@@ -7,10 +7,15 @@ import { PartialExcept } from "@/types/types";
 
 import { BaseEntityWithId } from "../entities/base-entity";
 import { convertQuery } from "../utils";
+import { Page, PaginationOptions } from "./pagination";
 
 export type EntityClass<T extends BaseEntityWithId> = {
    new (data: T): T;
    tableName: string;
+};
+
+export type GetOptions = {
+   pagination?: PaginationOptions;
 };
 
 export abstract class Service<T extends BaseEntityWithId> {
@@ -46,27 +51,142 @@ export abstract class Service<T extends BaseEntityWithId> {
       return result[0];
    }
 
-   public get(
+   public async get(
       queryBuilder: (
-         entity: SelectQuery<[new (data: T) => T]>,
-         builder: typeof $
+         builder: SelectQuery<[new (data: T) => T]>,
+         _$: typeof $
       ) => SelectQuery<[new (data: T) => T]>
-   ): Promise<T[]> {
+   ): Promise<T[]>;
+   public async get(
+      queryBuilder: (
+         builder: SelectQuery<[new (data: T) => T]>,
+         _$: typeof $
+      ) => SelectQuery<[new (data: T) => T]>,
+      pagination: PaginationOptions
+   ): Promise<Page<T>>;
+   public async get(
+      queryBuilder: (
+         builder: SelectQuery<[new (data: T) => T]>,
+         _$: typeof $
+      ) => SelectQuery<[new (data: T) => T]>,
+      pagination?: PaginationOptions
+   ): Promise<T[] | Page<T>> {
       if (!this.db) {
          throw new Error("Database not initialized");
       }
+      if (pagination) {
+         const pageSize = pagination.pageSize || 10;
+         const pageNumber = pagination.pageNumber || 1;
+         const offset = (pageNumber - 1) * pageSize;
+
+         const query = convertQuery(
+            queryBuilder($.from(this.entityClass), $)
+               .limit(pageSize, offset)
+               .build()
+         );
+
+         const items = await this.db.select<T[]>(...query);
+
+         const totalCountQuery = convertQuery(
+            queryBuilder($.from(this.entityClass), $).rowCount()
+         );
+         const totalCountResult = await this.db.select<
+            { "COUNT(*)": number }[]
+         >(...totalCountQuery);
+
+         const totalCount = totalCountResult[0]?.["COUNT(*)"] || 0;
+
+         const totalPages = Math.ceil(totalCount / pageSize);
+         if (pageNumber < 1 || pageNumber > totalPages) {
+            throw new Error(
+               `Page number ${pageNumber} is out of range. Total pages: ${totalPages}`
+            );
+         }
+
+         return {
+            items,
+            totalCount,
+            pageSize,
+            pageNumber,
+            totalPages,
+            hasNextPage: offset + pageSize < totalCount,
+            hasPreviousPage: offset > 0,
+            getNextPage: async () =>
+               this.get(queryBuilder, {
+                  pageSize,
+                  pageNumber: pageNumber + 1,
+               }),
+            getPreviousPage: async () =>
+               this.get(queryBuilder, {
+                  pageSize,
+                  pageNumber: Math.max(pageNumber - 1, 1),
+               }),
+         };
+      }
+
       const query = convertQuery(
          queryBuilder($.from(this.entityClass), $).build()
       );
-      console.log("🚀 ~ Service<T ~ query:", query);
 
       return this.db.select<T[]>(...query);
    }
 
-   public getAll(): Promise<T[]> {
+   public async getAll(pagination: PaginationOptions): Promise<Page<T>>;
+   public async getAll(): Promise<T[]>;
+   public async getAll(pagination?: PaginationOptions): Promise<T[] | Page<T>> {
       if (!this.db) {
          throw new Error("Database not initialized");
       }
+
+      if (pagination) {
+         const pageSize = pagination.pageSize || 10;
+         const pageNumber = pagination.pageNumber || 1;
+         const offset = (pageNumber - 1) * pageSize;
+
+         const query = convertQuery(
+            $.from(this.entityClass).limit(pageSize, offset).build()
+         );
+
+         const items = await this.db.select<T[]>(...query);
+
+         const totalCountQuery = convertQuery(
+            $.from(this.entityClass).rowCount()
+         );
+         const totalCountResult = await this.db.select<
+            { "COUNT(*)": number }[]
+         >(...totalCountQuery);
+
+         const totalCount = totalCountResult[0]?.["COUNT(*)"] || 0;
+
+         const totalPages = Math.ceil(totalCount / pageSize);
+
+         if (pageNumber < 1 || pageNumber > totalPages) {
+            throw new Error(
+               `Page number ${pageNumber} is out of range. Total pages: ${totalPages}`
+            );
+         }
+
+         return {
+            items,
+            totalCount,
+            pageSize,
+            pageNumber,
+            totalPages,
+            hasNextPage: offset + pageSize < totalCount,
+            hasPreviousPage: offset > 0,
+            getNextPage: async () =>
+               this.getAll({
+                  pageSize,
+                  pageNumber: pageNumber + 1,
+               }),
+            getPreviousPage: async () =>
+               this.getAll({
+                  pageSize,
+                  pageNumber: Math.max(pageNumber - 1, 1),
+               }),
+         };
+      }
+
       const query = convertQuery($.from(this.entityClass).build());
 
       return this.db.select<T[]>(...query);
