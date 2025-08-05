@@ -1,8 +1,8 @@
 import { VariantProps, cva } from "class-variance-authority";
 import React, { useEffect, useMemo } from "react";
 
-import { detectImageMimeType } from "@/features/import/lib/cover-utils";
 import { CoverImage } from "@/features/import/types/metadata";
+import { detectImageMimeType } from "@/features/import/utils/cover-utils";
 import { cn } from "@/lib/style-utils";
 
 const coverVariants = cva(["relative overflow-hidden"], {

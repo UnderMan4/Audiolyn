@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { PageContent } from "@/components/layout/page-content";
 import { Cover } from "@/components/ui/cover";
 import { Spinner } from "@/components/ui/spinner";
-import { readMetadata } from "@/features/import/api/metadata";
+import { readMetadata } from "@/features/import/api/backend";
 import { AudiobookInfo } from "@/features/import/types/metadata";
 import { useAsyncStatus } from "@/hooks/use-async-status";
 import { useRouter } from "@/hooks/use-router";

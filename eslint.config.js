@@ -35,6 +35,7 @@ export default defineConfig([
          "react-hooks/exhaustive-deps": "warn",
          "@typescript-eslint/no-namespace": "off",
          "eslint-plugin-prettier/prettier": ["error", { endOfLine: "auto" }],
+         "no-multiple-empty-lines": "off",
       },
    },
    {
