@@ -1,21 +1,22 @@
 import { Table } from "litdb";
 
-import { AudiobookEntity } from "./audiobook-entity";
-import { BaseEntity, baseEntityColumns } from "./base-entity";
-import { TagEntity } from "./tag-entity";
+import { BaseEntity, baseEntityColumns } from "../../common/base-entity";
+import { AudiobookEntity } from "../audiobook-entity";
+import { GenreEntity } from "../genre-entity";
 
-export class AudiobookTagEntity extends BaseEntity {
-   constructor(data: Partial<AudiobookTagEntity>) {
+export class AudiobookGenreEntity extends BaseEntity {
+   constructor(data: Partial<AudiobookGenreEntity>) {
       super(data);
       Object.assign(this, data);
    }
 
-   static readonly tableName = "audiobooks_tags";
+   static readonly tableName = "audiobooks_genres";
+
    audiobookId: number = 0;
-   tagId: number = 0;
+   genreId: number = 0;
 }
 
-Table(AudiobookTagEntity, {
+Table(AudiobookGenreEntity, {
    columns: {
       audiobookId: {
          type: "INTEGER",
@@ -26,18 +27,18 @@ Table(AudiobookTagEntity, {
             on: ["DELETE", "CASCADE"],
          },
       },
-      tagId: {
+      genreId: {
          type: "INTEGER",
          required: true,
-         alias: "tag_id",
+         alias: "genre_id",
          references: {
-            table: TagEntity,
+            table: GenreEntity,
             on: ["DELETE", "CASCADE"],
          },
       },
       ...baseEntityColumns,
    },
    table: {
-      alias: "audiobooks_tags",
+      alias: "Audiobook_Genre",
    },
 });

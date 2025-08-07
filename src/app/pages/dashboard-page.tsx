@@ -109,6 +109,13 @@ export default function DashboardPage() {
             >
                Update
             </Button>
+            <Button
+               onClick={async () => {
+                  services.audiobookService.getAudiobookAuthors(1);
+               }}
+            >
+               Get audiobook authors
+            </Button>
 
             <BetterLink to="/non-existent">Link does not exist</BetterLink>
          </div>

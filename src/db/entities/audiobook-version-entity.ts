@@ -1,7 +1,7 @@
 import { Table } from "litdb";
 
+import { BaseEntityWithId, baseEntityColumns } from "../common/base-entity";
 import { AudiobookEntity } from "./audiobook-entity";
-import { BaseEntityWithId, baseEntityColumns } from "./base-entity";
 import { FormatEntity } from "./format-entity";
 import { LanguageEntity } from "./language-entity";
 

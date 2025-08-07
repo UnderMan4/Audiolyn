@@ -1,8 +1,8 @@
 import { Table } from "litdb";
 
-import { AudiobookVersionEntity } from "./audiobook-version-entity";
-import { BaseEntity, baseEntityColumns } from "./base-entity";
-import { NarratorEntity } from "./narrator-entity";
+import { BaseEntity, baseEntityColumns } from "../../common/base-entity";
+import { AudiobookVersionEntity } from "../audiobook-version-entity";
+import { NarratorEntity } from "../narrator-entity";
 
 export class AudiobookVersionNarratorEntity extends BaseEntity {
    constructor(data: Partial<AudiobookVersionNarratorEntity>) {

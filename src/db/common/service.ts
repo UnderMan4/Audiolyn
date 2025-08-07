@@ -5,8 +5,8 @@ import _ from "lodash";
 import { pascalToSnake } from "@/lib/string-utils";
 import { PartialExcept } from "@/types/types";
 
-import { BaseEntityWithId } from "../entities/base-entity";
 import { convertQuery } from "../utils";
+import { BaseEntityWithId } from "./base-entity";
 import { Page, PaginationOptions } from "./pagination";
 
 export type EntityClass<T extends BaseEntityWithId> = {
@@ -33,14 +33,19 @@ export abstract class Service<T extends BaseEntityWithId> {
       this.entityClass = entityClass;
    }
 
-   setDb(db: Database) {
+   protected checkDb(): asserts this is { db: Database } {
+      if (!this.db) {
+         throw new Error("Database not initialized");
+      }
+   }
+
+   public setDb(db: Database) {
       this.db = db;
    }
 
    public async getById(id: number): Promise<T> {
-      if (!this.db) {
-         throw new Error("Database not initialized");
-      }
+      this.checkDb();
+
       const query = convertQuery(
          $.from(this.entityClass)
             .where((entity) => $`${entity.id}=${id}`)
@@ -71,9 +76,8 @@ export abstract class Service<T extends BaseEntityWithId> {
       ) => SelectQuery<[new (data: T) => T]>,
       pagination?: PaginationOptions
    ): Promise<T[] | Page<T>> {
-      if (!this.db) {
-         throw new Error("Database not initialized");
-      }
+      this.checkDb();
+
       if (pagination) {
          const pageSize = pagination.pageSize || 10;
          const pageNumber = pagination.pageNumber || 1;
@@ -134,9 +138,7 @@ export abstract class Service<T extends BaseEntityWithId> {
    public async getAll(pagination: PaginationOptions): Promise<Page<T>>;
    public async getAll(): Promise<T[]>;
    public async getAll(pagination?: PaginationOptions): Promise<T[] | Page<T>> {
-      if (!this.db) {
-         throw new Error("Database not initialized");
-      }
+      this.checkDb();
 
       if (pagination) {
          const pageSize = pagination.pageSize || 10;
@@ -193,9 +195,7 @@ export abstract class Service<T extends BaseEntityWithId> {
    }
 
    public async add(entity: T): Promise<T> {
-      if (!this.db) {
-         throw new Error("Database not initialized");
-      }
+      this.checkDb();
 
       const data = Object.entries(entity).filter(
          ([key]) => !Service.FIELDS_TO_IGNORE.includes(key)
@@ -215,9 +215,7 @@ export abstract class Service<T extends BaseEntityWithId> {
    }
 
    public async update(entity: PartialExcept<T, "id">): Promise<T> {
-      if (!this.db) {
-         throw new Error("Database not initialized");
-      }
+      this.checkDb();
 
       if (!entity.id) {
          throw new Error("Entity must have an id to be updated");
