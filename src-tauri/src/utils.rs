@@ -1,7 +1,3 @@
-pub fn opt_str_to_string(opt: Option<&str>) -> Option<String> {
-    opt.map(|s| s.to_string())
-}
-
 pub fn get_file_name(file_path: &str) -> (String, String) {
     let path = std::path::Path::new(file_path);
     let file_stem = path
