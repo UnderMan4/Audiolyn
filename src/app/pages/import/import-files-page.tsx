@@ -30,7 +30,7 @@ export default function ImportFilesPage() {
    useEffect(() => {
       console.log("🚀 ~ ImportFilesPage ~ value:", value);
       console.log("🚀 ~ ImportFilesPage ~ search:", search);
-      value?.map((v) => convertAudiobookData(v));
+      // value?.map((v) => convertAudiobookData(v));
    }, [value, search]);
 
    if (loading) {
@@ -54,29 +54,30 @@ export default function ImportFilesPage() {
    return (
       <PageContent className="flex flex-col gap-4">
          {value && value.length > 0 ? (
-            value.map(({ metadata, coverImages }, index) => (
-               <div
-                  key={index}
-                  className="flex flex-row p-4 border rounded gap-4"
-               >
-                  <Cover img={coverImages[0]} />
-                  <div className="flex flex-col shrink-0 w-40">
-                     <p>{metadata.title}</p>
-                     <p className="text-sm text-gray-500">{metadata.artist}</p>
-                  </div>
-                  <div className="flex flex-col text-sm max-w-2xl">
-                     {Object.entries(metadata)
-                        .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-                        .map(([key, value]) => (
-                           <p key={key}>
-                              <span className="font-bold text-muted-foreground opacity-70">
-                                 {key}:
-                              </span>
-                              <span className="ml-1">{value}</span>
-                           </p>
-                        ))}
-                  </div>
-               </div>
+            value.map((_, index) => (
+               // <div
+               //    key={index}
+               //    className="flex flex-row p-4 border rounded gap-4"
+               // >
+               //    <Cover img={coverImages[0]} />
+               //    <div className="flex flex-col shrink-0 w-40">
+               //       <p>{metadata.title}</p>
+               //       <p className="text-sm text-gray-500">{metadata.artist}</p>
+               //    </div>
+               //    <div className="flex flex-col text-sm max-w-2xl">
+               //       {Object.entries(metadata)
+               //          .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+               //          .map(([key, value]) => (
+               //             <p key={key}>
+               //                <span className="font-bold text-muted-foreground opacity-70">
+               //                   {key}:
+               //                </span>
+               //                <span className="ml-1">{value}</span>
+               //             </p>
+               //          ))}
+               //    </div>
+               // </div>
+               <div />
             ))
          ) : (
             <p>No metadata found.</p>

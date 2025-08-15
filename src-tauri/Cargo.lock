@@ -264,6 +264,7 @@ dependencies = [
  "derive_builder",
  "ffmpeg-next",
  "lofty",
+ "regex",
  "serde",
  "serde_json",
  "tauri",
