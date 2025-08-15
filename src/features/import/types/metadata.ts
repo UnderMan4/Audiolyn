@@ -1,6 +1,6 @@
 export type Chapter = {
    id: number;
-   title?: string;
+   title: string | null;
    startTime: number;
 };
 
@@ -12,15 +12,33 @@ export type CoverImage = {
 };
 
 export type AudiobookInfo = {
-   metadata: Metadata;
+   title: string | null;
+   subtitle: string | null;
+   authors: string[];
+   narrators: string[];
+   publisher: string | null;
+   seriesName: string | null;
+   seriesIndex: number | null;
+   language: string | null;
+   releaseDate: string | null;
+
+   asin: string | null;
+   audibleProductId: string | null;
+   isbn: string | null;
+   customIds: Record<string, string>;
+
+   duration: bigint | null;
+   bitrate: number | null;
+   sampleRate: number | null;
+   channels: number | null;
+   bitDepth: number | null;
+
+   chapters: Chapter[] | null;
    coverImages: CoverImage[];
-   chapters?: Chapter[];
-   duration: bigint;
-   bitrate?: number;
-   sampleRate?: number;
-   channels?: number;
-   bitDepth?: number;
-   fileInfo?: FileInfo;
+
+   rawTags: Record<string, string>;
+
+   file: FileInfo;
 };
 
 export type FileInfo = {
@@ -28,35 +46,4 @@ export type FileInfo = {
    extension: string;
    size: number;
    path: string;
-};
-
-export type Metadata = {
-   encoder?: string;
-   artist?: string;
-   album?: string;
-   date?: string;
-   title?: string;
-   track?: string;
-   minor_version?: string;
-   composer?: string;
-   compatible_brands?: string;
-   comment?: string;
-   description?: string;
-   genre?: string;
-   major_brand?: string;
-   media_type?: string;
-   album_artist?: string;
-   copyright?: string;
-   creation_time?: string;
-   asin?: string;
-   narratedBy?: string;
-   product_id?: string;
-   AUTHOR?: string;
-   RATING?: string;
-   iTunSMPB?: string;
-   SUBTITLE?: string;
-   NARRATEDBY?: string;
-   grouping?: string;
-} & {
-   [key: string]: string | undefined; // Allow additional keys
 };
