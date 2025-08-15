@@ -1,4 +1,4 @@
-use super::types::{AudiobookInfo, AudiobookInfoBuilder, Chapter, CoverImage};
+use super::types::{AudiobookInfo, AudiobookInfoBuilder, Chapter, CoverImage, FileInfo};
 
 use crate::utils;
 use ffmpeg_next as ffmpeg;
@@ -26,6 +26,20 @@ pub fn get_metadata(file_path: &str) -> Result<AudiobookInfo, Box<dyn std::error
         .read()?;
 
     let mut builder = AudiobookInfoBuilder::default();
+    {
+        let (name, extension) = utils::get_file_name(file_path);
+        let size = std::fs::metadata(file_path)?.len();
+
+        let file_info = FileInfo {
+            name,
+            extension,
+            size,
+            path: file_path.to_string(),
+        };
+
+        builder.file(file_info);
+    }
+
     {
         let properties = media.properties();
 

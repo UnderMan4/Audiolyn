@@ -26,6 +26,7 @@ export const ops = {
       a: string | number | boolean | null,
       b: string | number | boolean | null
    ) => $`${a} = ${b}`,
+   iequals: (a: string, b: string) => $`LOWER(${a}) = LOWER(${b})`,
    notEquals: (
       a: string | number | boolean | null,
       b: string | number | boolean | null

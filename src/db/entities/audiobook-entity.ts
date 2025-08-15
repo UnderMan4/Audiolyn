@@ -16,6 +16,7 @@ export class AudiobookEntity extends BaseEntityWithId {
    releaseDate: Date | undefined;
    publisher: string | undefined;
    isbn: string | undefined;
+   audibleAsin: string | undefined;
 }
 
 Table(AudiobookEntity, {
@@ -27,6 +28,7 @@ Table(AudiobookEntity, {
       releaseDate: { type: "DATETIME", required: false, alias: "release_date" },
       publisher: { type: "TEXT", required: false },
       isbn: { type: "TEXT", required: false },
+      audibleAsin: { type: "TEXT", required: false, alias: "audible_asin" },
       ...baseEntityColumns,
    },
    table: {

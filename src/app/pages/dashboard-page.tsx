@@ -36,7 +36,7 @@ export default function DashboardPage() {
                setProgress(section.timeSeconds);
             }}
          />
-         <div className="flex gap-4">
+         <div className="flex gap-4 flex-wrap">
             <Button
                onClick={async () => {
                   const metadata = await invoke("read_metadata", {
@@ -61,7 +61,15 @@ export default function DashboardPage() {
                   console.table(rest);
                }}
             >
-               Get genres
+               Get genres paginated
+            </Button>
+            <Button
+               onClick={async () => {
+                  const genres = await services.genreService.getAll();
+                  console.table(genres);
+               }}
+            >
+               Get genres all
             </Button>
             <Button
                onClick={async () => {

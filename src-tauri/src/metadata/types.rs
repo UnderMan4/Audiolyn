@@ -23,6 +23,7 @@ pub struct AudiobookInfo {
     sample_rate: Option<u32>,
     channels: Option<u8>,
     bit_depth: Option<u8>,
+    file: FileInfo,
 }
 
 #[derive(Debug, Clone, Builder, Default, Serialize)]
@@ -33,4 +34,14 @@ pub struct CoverImage {
     pub mime_type: Option<String>,
     pub picture_type: Option<String>,
     pub extension: Option<String>,
+}
+
+#[derive(Debug, Clone, Builder, Default, Serialize)]
+#[builder(default)]
+#[serde(rename_all = "camelCase")]
+pub struct FileInfo {
+    pub name: String,
+    pub extension: String,
+    pub size: u64,
+    pub path: String,
 }

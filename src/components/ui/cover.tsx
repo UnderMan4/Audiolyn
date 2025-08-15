@@ -36,7 +36,8 @@ export const Cover = ({
    bookTitle,
    ...props
 }: Cover.Props) => {
-   const { data, mimeType } = img;
+   const data = img?.data;
+   const mimeType = img?.mimeType;
 
    const url = useMemo(() => {
       if (!data) return undefined;

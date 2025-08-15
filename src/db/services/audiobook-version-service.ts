@@ -1,15 +1,22 @@
 import { Service } from "../common/service";
 import { AudiobookVersionEntity } from "../entities/audiobook-version-entity";
-import { ops } from "../utils";
 
 export class AudiobookVersionService extends Service<AudiobookVersionEntity> {
    constructor() {
       super(AudiobookVersionEntity);
    }
 
-   public async getByName(name: string): Promise<AudiobookVersionEntity[]> {
-      return this.get((entity) =>
-         entity.where((e) => ops.ilike(e.path, `%${name}%`))
-      );
+   /**
+    * @deprecated This method is not supported in AudiobookVersionService.
+    */
+   public async getByName(): Promise<AudiobookVersionEntity[]> {
+      throw new Error("Not supported.");
+   }
+
+   /**
+    * @deprecated This method is not supported in AudiobookVersionService.
+    */
+   public async addOrGetIfExists(): Promise<AudiobookVersionEntity> {
+      throw new Error("Not supported.");
    }
 }

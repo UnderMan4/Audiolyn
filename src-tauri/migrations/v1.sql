@@ -125,7 +125,7 @@ SET
    updated_at = CURRENT_TIMESTAMP,
    version = version + 1
 WHERE
-   rowid = NEW.rowid;
+   + rowid = NEW.rowid;
 
 END;
 
@@ -139,6 +139,7 @@ CREATE TABLE
       release_date DATETIME,
       publisher TEXT,
       isbn TEXT,
+      audible_asin TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       version INTEGER DEFAULT 1

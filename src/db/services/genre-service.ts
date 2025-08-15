@@ -12,4 +12,23 @@ export class GenreService extends Service<GenreEntity> {
          entity.where((e) => ops.ilike(e.name, `%${name}%`))
       );
    }
+
+   public async addOrGetIfExists(
+      entity: Partial<GenreEntity>
+   ): Promise<GenreEntity> {
+      this.checkDb();
+
+      if (!entity.name) {
+         throw new Error("Name is required to add or get a genre.");
+      }
+
+      const existing = await this.getOne((e) =>
+         e.where((a) => ops.iequals(a.name, entity.name || ""))
+      );
+
+      if (existing) return existing;
+
+      const newEntity = new GenreEntity(entity);
+      return this.add(newEntity);
+   }
 }

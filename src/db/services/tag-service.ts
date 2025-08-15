@@ -12,4 +12,23 @@ export class TagService extends Service<TagEntity> {
          entity.where((e) => ops.ilike(e.name, `%${name}%`))
       );
    }
+
+   public async addOrGetIfExists(
+      entity: Partial<TagEntity>
+   ): Promise<TagEntity> {
+      this.checkDb();
+
+      if (!entity.name) {
+         throw new Error("Name is required to add or get a tag.");
+      }
+
+      const existing = await this.getOne((e) =>
+         e.where((a) => ops.iequals(a.name, entity.name || ""))
+      );
+
+      if (existing) return existing;
+
+      const newEntity = new TagEntity(entity);
+      return this.add(newEntity);
+   }
 }

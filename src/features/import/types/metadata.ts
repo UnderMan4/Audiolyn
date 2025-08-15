@@ -12,18 +12,25 @@ export type CoverImage = {
 };
 
 export type AudiobookInfo = {
-   metadata: Record<string, string>;
+   metadata: Metadata;
    coverImages: CoverImage[];
    chapters?: Chapter[];
-   duration: bigint; // Use bigint for u128
+   duration: bigint;
    bitrate?: number;
    sampleRate?: number;
    channels?: number;
    bitDepth?: number;
+   fileInfo?: FileInfo;
+};
+
+export type FileInfo = {
+   name: string;
+   extension: string;
+   size: number;
+   path: string;
 };
 
 export type Metadata = {
-   [key: string]: string | undefined;
    encoder?: string;
    artist?: string;
    album?: string;
@@ -50,4 +57,6 @@ export type Metadata = {
    SUBTITLE?: string;
    NARRATEDBY?: string;
    grouping?: string;
+} & {
+   [key: string]: string | undefined; // Allow additional keys
 };

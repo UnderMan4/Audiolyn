@@ -12,4 +12,23 @@ export class SeriesService extends Service<SeriesEntity> {
          entity.where((e) => ops.ilike(e.name, `%${name}%`))
       );
    }
+
+   public async addOrGetIfExists(
+      entity: Partial<SeriesEntity>
+   ): Promise<SeriesEntity> {
+      this.checkDb();
+
+      if (!entity.name) {
+         throw new Error("Name is required to add or get a series.");
+      }
+
+      const existing = await this.getOne((e) =>
+         e.where((a) => ops.iequals(a.name, entity.name || ""))
+      );
+
+      if (existing) return existing;
+
+      const newEntity = new SeriesEntity(entity);
+      return this.add(newEntity);
+   }
 }

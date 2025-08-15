@@ -12,4 +12,23 @@ export class LanguageService extends Service<LanguageEntity> {
          entity.where((e) => ops.ilike(e.code, `%${code}%`))
       );
    }
+
+   public async addOrGetIfExists(
+      entity: Partial<LanguageEntity>
+   ): Promise<LanguageEntity> {
+      this.checkDb();
+
+      if (!entity.code) {
+         throw new Error("Code is required to add or get a language.");
+      }
+
+      const existing = await this.getOne((e) =>
+         e.where((a) => ops.iequals(a.code, entity.code || ""))
+      );
+
+      if (existing) return existing;
+
+      const newEntity = new LanguageEntity(entity);
+      return this.add(newEntity);
+   }
 }

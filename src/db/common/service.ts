@@ -135,6 +135,22 @@ export abstract class Service<T extends BaseEntityWithId> {
       return this.db.select<T[]>(...query);
    }
 
+   public async getOne(
+      queryBuilder: (
+         builder: SelectQuery<[new (data: T) => T]>,
+         _$: typeof $
+      ) => SelectQuery<[new (data: T) => T]>
+   ): Promise<T | null> {
+      this.checkDb();
+
+      const query = convertQuery(
+         queryBuilder($.from(this.entityClass), $).build()
+      );
+
+      const result = await this.db.select<T[]>(...query);
+      return result[0] || null;
+   }
+
    public async getAll(pagination: PaginationOptions): Promise<Page<T>>;
    public async getAll(): Promise<T[]>;
    public async getAll(pagination?: PaginationOptions): Promise<T[] | Page<T>> {
@@ -266,4 +282,6 @@ export abstract class Service<T extends BaseEntityWithId> {
    }
 
    public abstract getByName(name: string): Promise<T[]>;
+
+   public abstract addOrGetIfExists(entity: Partial<T>): Promise<T>;
 }

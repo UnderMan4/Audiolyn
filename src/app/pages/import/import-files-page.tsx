@@ -5,6 +5,7 @@ import { Cover } from "@/components/ui/cover";
 import { Spinner } from "@/components/ui/spinner";
 import { readMetadata } from "@/features/import/api/backend";
 import { AudiobookInfo } from "@/features/import/types/metadata";
+import { convertAudiobookData } from "@/features/import/utils/data-utils";
 import { useAsyncStatus } from "@/hooks/use-async-status";
 import { useRouter } from "@/hooks/use-router";
 
@@ -29,6 +30,7 @@ export default function ImportFilesPage() {
    useEffect(() => {
       console.log("🚀 ~ ImportFilesPage ~ value:", value);
       console.log("🚀 ~ ImportFilesPage ~ search:", search);
+      value?.map((v) => convertAudiobookData(v));
    }, [value, search]);
 
    if (loading) {
