@@ -16,6 +16,7 @@ export const readMetadata = async (
 
    const results = await Promise.all(promises);
 
+   return results;
    return results.map((result) => ({
       ...result,
       coverImages: result.coverImages.map((img) => ({

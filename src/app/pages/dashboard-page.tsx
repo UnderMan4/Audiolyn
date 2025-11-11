@@ -11,7 +11,7 @@ import { GenreEntity } from "@/db/entities/genre-entity";
 import { ops } from "@/db/utils";
 import { AudiobookProgressBar } from "@/features/control-bar/components/audiobook-progress-bar";
 import { ChaptersIndicator } from "@/features/control-bar/components/chapters-indicator";
-import { readMetadata } from "@/features/import/api/metadata";
+import { readMetadata } from "@/features/import/api/backend";
 import { useOpenDialog } from "@/hooks/use-open-dialog";
 
 export default function DashboardPage() {
