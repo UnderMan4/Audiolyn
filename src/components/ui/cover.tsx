@@ -8,10 +8,10 @@ import { cn } from "@/lib/style-utils";
 const coverVariants = cva(["relative overflow-hidden"], {
    variants: {
       size: {
-         sm: "size-16 rounded",
-         md: "size-24 rounded-lg",
-         lg: "size-32 rounded-xl",
-         xl: "size-40 rounded-2xl",
+         sm: "size-16 rounded-none",
+         md: "size-24 rounded",
+         lg: "size-32 rounded-lg",
+         xl: "size-40 rounded-xl",
       },
    },
    defaultVariants: {

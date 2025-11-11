@@ -11,16 +11,12 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-async fn read_metadata(file_path: String) -> Response {
-    let metadata = reader::get_metadata(&file_path);
+async fn read_metadata(file_path: String) -> Result<String, String> {
+    let metadata = tokio::task::spawn_blocking(move || reader::get_metadata(file_path))
+        .await
+        .map_err(|e| format!("Failed to read metadata: {}", e))?;
 
-    match metadata {
-        Ok(info) => Response::new(serde_json::to_string(&info).unwrap()),
-        Err(e) => {
-            dbg!("Error reading metadata: {}", &e);
-            Response::new(format!("Error: {}", e))
-        }
-    }
+    metadata
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

@@ -5,14 +5,23 @@ import { BetterLink } from "@/components/better-link";
 import { PageContent } from "@/components/layout/page-content";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { AUDIO_FILES_FILTER } from "@/config/filter-definitions";
 import { useDatabase } from "@/db/database-store";
 import { GenreEntity } from "@/db/entities/genre-entity";
 import { ops } from "@/db/utils";
 import { AudiobookProgressBar } from "@/features/control-bar/components/audiobook-progress-bar";
 import { ChaptersIndicator } from "@/features/control-bar/components/chapters-indicator";
+import { readMetadata } from "@/features/import/api/metadata";
+import { useOpenDialog } from "@/hooks/use-open-dialog";
 
 export default function DashboardPage() {
    const [progress, setProgress] = useState(45);
+   const filesDialog = useOpenDialog({
+      directory: false,
+      multiple: true,
+      filters: [AUDIO_FILES_FILTER],
+      title: "common.openDialog.titles.importFiles",
+   });
 
    const { services } = useDatabase();
    return (
@@ -131,6 +140,18 @@ export default function DashboardPage() {
             <Spinner size="sm" />
             <Spinner size="md" />
             <Spinner size="lg" />
+         </div>
+         <div>
+            <Button
+               onClick={async () => {
+                  const files = await filesDialog.open();
+                  console.log("Selected files:", files);
+                  const metadata = await readMetadata(files || []);
+                  console.log("Metadata:", metadata);
+               }}
+            >
+               Get metadata
+            </Button>
          </div>
       </PageContent>
    );
