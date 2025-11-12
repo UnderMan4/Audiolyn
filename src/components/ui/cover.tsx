@@ -1,7 +1,6 @@
 import { VariantProps, cva } from "class-variance-authority";
 import React, { useEffect, useMemo } from "react";
 
-import { CoverImage } from "@/features/import/types/metadata";
 import { detectImageMimeType } from "@/features/import/utils/cover-utils";
 import { cn } from "@/lib/style-utils";
 
@@ -22,7 +21,9 @@ const coverVariants = cva(["relative overflow-hidden"], {
 export namespace Cover {
    export type Props = Omit<React.ComponentProps<"div">, "src"> &
       VariantProps<typeof coverVariants> & {
-         img: CoverImage;
+         //TODO: Replace with actual type
+         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         img: any;
          bookTitle?: string;
          bookAuthor?: string;
       };
@@ -44,12 +45,12 @@ export const Cover = ({
       const blob = new Blob([data], {
          type: mimeType || detectImageMimeType(data),
       });
-      return window.URL.createObjectURL(blob);
+      return globalThis.URL.createObjectURL(blob);
    }, [data, mimeType]);
 
    useEffect(() => {
       return () => {
-         if (url) window.URL.revokeObjectURL(url);
+         if (url) globalThis.URL.revokeObjectURL(url);
       };
    }, [url]);
 

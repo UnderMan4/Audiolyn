@@ -1,11 +1,16 @@
-use crate::utils::ffmpeg::get_ffprobe_path;
+use crate::utils::executables::{get_executable_path, Executable};
 use serde_json::{json, Value};
 use std::process::Command;
 
-#[tauri::command]
-pub fn get_metadata(path: String) -> Result<String, String> {
+pub fn get_metadata(handle: tauri::AppHandle, path: String) -> Result<String, String> {
     // Run ffprobe with full metadata + error support
-    let output = Command::new(get_ffprobe_path())
+
+    let ffprobe_path = get_executable_path(handle.clone(), Executable::Ffprobe)
+        .map_err(|e| format!("Failed to get ffprobe path: {e}"))?;
+
+    println!("ffprobe path: {ffprobe_path:?}");
+
+    let output = Command::new(ffprobe_path)
         .args([
             "-loglevel",
             "error",

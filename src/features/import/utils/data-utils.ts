@@ -1,10 +1,3 @@
-import human from "humanparser";
-
-import { AudiobookEntity } from "@/db/entities/audiobook-entity";
-import { AuthorEntity } from "@/db/entities/author-entity";
-
-import { AudiobookInfo } from "../types/metadata";
-
 export const splitArtists = (artistsString: string | undefined): string[] => {
    if (!artistsString) return [];
 
@@ -20,5 +13,3 @@ export const splitArtists = (artistsString: string | undefined): string[] => {
          .filter((s) => s.length > 0)
    );
 };
-
-export const convertAudiobookData = (data: AudiobookInfo) => {};

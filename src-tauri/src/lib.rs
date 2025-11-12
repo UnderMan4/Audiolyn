@@ -11,8 +11,8 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-async fn read_metadata(file_path: String) -> Result<String, String> {
-    let metadata = tokio::task::spawn_blocking(move || reader::get_metadata(file_path))
+async fn read_metadata(file_path: String, handle: tauri::AppHandle) -> Result<String, String> {
+    let metadata = tokio::task::spawn_blocking(move || reader::get_metadata(handle, file_path))
         .await
         .map_err(|e| format!("Failed to read metadata: {}", e))?;
 

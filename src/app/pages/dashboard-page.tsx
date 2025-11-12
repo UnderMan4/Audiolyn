@@ -146,7 +146,10 @@ export default function DashboardPage() {
                onClick={async () => {
                   const files = await filesDialog.open();
                   console.log("Selected files:", files);
-                  const metadata = await readMetadata(files || []);
+                  const metadata = await readMetadata([
+                     ...(files || []),
+                     "BAD_PATH",
+                  ]);
                   console.log("Metadata:", metadata);
                }}
             >

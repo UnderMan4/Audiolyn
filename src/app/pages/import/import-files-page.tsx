@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 
 import { PageContent } from "@/components/layout/page-content";
-import { Cover } from "@/components/ui/cover";
 import { Spinner } from "@/components/ui/spinner";
 import { readMetadata } from "@/features/import/api/backend";
-import { AudiobookInfo } from "@/features/import/types/metadata";
+import { FFprobeProbeResult } from "@/features/import/types/ffprobe";
 import { useAsyncStatus } from "@/hooks/use-async-status";
 import { useRouter } from "@/hooks/use-router";
 
@@ -18,7 +17,8 @@ export namespace ImportFilesPage {
 export default function ImportFilesPage() {
    const { search } = useRouter<ImportFilesPage.SearchParams>();
 
-   const { loading, error, value, run } = useAsyncStatus<AudiobookInfo[]>();
+   const { loading, error, value, run } =
+      useAsyncStatus<FFprobeProbeResult[]>();
 
    useEffect(() => {
       if (search.data && search.data.length > 0) {
@@ -53,22 +53,29 @@ export default function ImportFilesPage() {
    return (
       <PageContent className="flex flex-col gap-4">
          {value && value.length > 0 ? (
-            value.map((metadata) => (
-               <div
-                  key={metadata.file.path}
-                  className="flex flex-row p-4 border rounded gap-4"
-               >
-                  <Cover img={metadata.coverImages[0]} />
-                  <div>
-                     <p className="text-lg font-semibold text-foreground">
-                        {metadata.title}
-                     </p>
-                     <p className="text-sm text-accent-foreground">
-                        {metadata.authors.join(", ")}
-                     </p>
+            value.map((metadata) =>
+               "error" in metadata ? null : (
+                  <div
+                     key={metadata.format?.filename}
+                     className="flex flex-row p-4 border rounded gap-4"
+                  >
+                     {/* <Cover img={metadata.coverImages[0]} /> */}
+                     <div>
+                        <p className="text-lg font-semibold text-foreground">
+                           {metadata.format.tags?.title ||
+                              metadata.format.tags?.TITLE ||
+                              metadata.format.filename}
+                        </p>
+                        <p className="text-sm text-accent-foreground">
+                           {metadata.format.tags?.artist ||
+                              metadata.format.tags?.ARTIST ||
+                              metadata.format.tags?.album_artist ||
+                              "Unknown Artist"}
+                        </p>
+                     </div>
                   </div>
-               </div>
-            ))
+               )
+            )
          ) : (
             <p>No metadata found.</p>
          )}
