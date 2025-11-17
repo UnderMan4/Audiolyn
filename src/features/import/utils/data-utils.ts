@@ -1,4 +1,6 @@
-export const splitArtists = (artistsString: string | undefined): string[] => {
+export const splitMultiValueTag = (
+   artistsString: string | undefined
+): string[] => {
    if (!artistsString) return [];
 
    return (
