@@ -83,3 +83,16 @@ export const getValueAtPath = <T extends AnyObject, P extends ObjectPath<T>>(
 
    return current as ValueAtPath<T, PathSegments<P>>;
 };
+
+export const getValuesAtPaths = <
+   T extends AnyObject,
+   P extends readonly ObjectPath<T>[],
+>(
+   obj: T,
+   paths: P
+): ValuesAtPaths<T, P>[] => {
+   return paths.map((path) => getValueAtPath(obj, path)) as ValuesAtPaths<
+      T,
+      P
+   >[];
+};

@@ -1,11 +1,4 @@
-import {
-   AnyObject,
-   ObjectPath,
-   PathSegments,
-   ValueAtPath,
-   ValuesAtPaths,
-   getValueAtPath,
-} from "@/lib/object-path";
+import { AnyObject, ObjectPath, getValueAtPath } from "@/lib/object-path";
 
 import { ToDiscoUnion } from "../types/types";
 
@@ -80,7 +73,7 @@ export const mapWithSchema = <
                .map((path) => getValueAtPath(src, path))
                .find((v) => v !== undefined && v !== null);
 
-            acc[key] = rule.fn(value) as Target[typeof key];
+            acc[key] = rule.fn(value);
             break;
          }
 

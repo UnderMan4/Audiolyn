@@ -12,6 +12,7 @@ import { ops } from "@/db/utils";
 import { AudiobookProgressBar } from "@/features/control-bar/components/audiobook-progress-bar";
 import { ChaptersIndicator } from "@/features/control-bar/components/chapters-indicator";
 import { readMetadata } from "@/features/import/api/backend";
+import { mapAudiobookToImport } from "@/features/import/utils/import-mapper";
 import { useOpenDialog } from "@/hooks/use-open-dialog";
 
 export default function DashboardPage() {
@@ -151,6 +152,13 @@ export default function DashboardPage() {
                      "BAD_PATH",
                   ]);
                   console.log("Metadata:", metadata);
+
+                  const mappedMetadata = metadata.map((m) => {
+                     if ("error" in m) return undefined;
+                     return mapAudiobookToImport(m);
+                  });
+
+                  console.log("Mapped metadata:", mappedMetadata);
                }}
             >
                Get metadata
